@@ -1,4 +1,4 @@
-package com.proyectofinal.consorcio.configuraciones;
+/*package com.proyectofinal.consorcio.configuraciones;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,19 +10,20 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.proyectofinal.consorcio.services.AdministradorService;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SeguridadConfiguracion extends WebSecurityConfigurerAdapter{
-/*
+
 	@Autowired
-	@Qualifier("usuarioService")
-	public UsuarioService usuarioService;
+	@Qualifier("AdministradorService")
+	public AdministradorService adminService;
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-		auth.userDetailsService(usuarioService).
-		passwordEncoder(new BCryptPasswordEncoder());
+		auth.userDetailsService(adminService).passwordEncoder(new BCryptPasswordEncoder());
 	}
 	
 	
@@ -47,5 +48,5 @@ public class SeguridadConfiguracion extends WebSecurityConfigurerAdapter{
 					.disable();
 	}
 	
-*/
-}
+
+}*/

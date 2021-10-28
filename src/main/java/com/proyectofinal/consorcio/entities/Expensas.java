@@ -3,24 +3,38 @@ package com.proyectofinal.consorcio.entities;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.proyectofinal.consorcio.enums.Meses;
+import com.proyectofinal.consorcio.enums.Movimientos;
 
 @Entity
 public class Expensas {
 
 	
 	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
-	private Double total;
-	private String detalle;
+	private String detalle;	
 	private Double monto;
-	private final Integer ingreso = 1;
-	private final Integer egreso = 2;
+	private Boolean alta;
+	
+	@Enumerated(EnumType.STRING)
+	private Movimientos movimiento;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
+	
+	@Enumerated(EnumType.STRING)
+	private Meses mes;
 
 	//GETTERS Y SETTERS
 	public String getId() {
@@ -30,13 +44,13 @@ public class Expensas {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public Double getTotal() {
-		return total;
+	
+	public Boolean getAlta() {
+		return alta;
 	}
 
-	public void setTotal(Double total) {
-		this.total = total;
+	public void setAlta(Boolean alta) {
+		this.alta = alta;
 	}
 
 	public String getDetalle() {
@@ -63,16 +77,21 @@ public class Expensas {
 		this.fecha = fecha;
 	}
 
-	public Integer getIngreso() {
-		return ingreso;
+	public Movimientos getMovimiento() {
+		return movimiento;
 	}
 
-	public Integer getEgreso() {
-		return egreso;
+	public void setMovimiento(Movimientos movimiento) {
+		this.movimiento = movimiento;
 	}
-	
 
-	
-	
+	public Meses getMes() {
+		return mes;
+	}
+
+	public void setMes(Meses mes) {
+		this.mes = mes;
+	}
+
 
 }

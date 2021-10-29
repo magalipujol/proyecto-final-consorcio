@@ -1,21 +1,28 @@
 package com.proyectofinal.consorcio.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Administrador {
 
 	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
 	private String nombre;
+	private String mail;
 	private String password;
 
 	@OneToMany
-	private Edificio edificio;
-	
-	
+	private List<Edificio> edificios;
+
 	//GETTERS Y SETTERS
 	
 	public String getId() {
@@ -32,14 +39,14 @@ public class Administrador {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}	
+
+	public String getMail() {
+		return mail;
 	}
 
-	public Edificio getEdificio() {
-		return edificio;
-	}
-
-	public void setEdificio(Edificio edificio) {
-		this.edificio = edificio;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 
 	public String getPassword() {
@@ -49,7 +56,15 @@ public class Administrador {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 
+	public List<Edificio> getEdificios() {
+		return edificios;
+	}
+
+	public void setEdificios(List<Edificio> edificios) {
+		this.edificios = edificios;
+	}
+	
+	
+	
 }

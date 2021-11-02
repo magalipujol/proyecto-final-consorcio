@@ -15,7 +15,7 @@ public class Departamento {
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
-	private int piso;
+	private Integer piso;
 	private String dpto;
 	private Double porcentajeParticipacion;
 	@ManyToOne
@@ -34,11 +34,11 @@ public class Departamento {
 		this.id = id;
 	}
 
-	public void setPiso(int piso) {
+	public void setPiso(Integer piso) {
 		this.piso = piso;
 	}
 
-	public int getPiso() {
+	public Integer getPiso() {
 		return piso;
 	}
 

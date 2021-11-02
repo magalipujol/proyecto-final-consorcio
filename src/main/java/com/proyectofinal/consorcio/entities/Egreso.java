@@ -3,20 +3,18 @@ package com.proyectofinal.consorcio.entities;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.proyectofinal.consorcio.enums.Meses;
-import com.proyectofinal.consorcio.enums.Movimientos;
+import com.proyectofinal.consorcio.enums.TipoGasto;
 
 @Entity
-public class Expensas {
+public class Egreso {
 
 	
 	@Id
@@ -27,14 +25,14 @@ public class Expensas {
 	private Double monto;
 	private Boolean alta;
 	
-	@Enumerated(EnumType.STRING)
-	private Movimientos movimiento;
+	private TipoGasto tipoGasto;
+	
+	@ManyToOne
+	private Liquidacion liquidacion;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
-	
-	@Enumerated(EnumType.STRING)
-	private Meses mes;
+
 
 	//GETTERS Y SETTERS
 	public String getId() {
@@ -77,21 +75,23 @@ public class Expensas {
 		this.fecha = fecha;
 	}
 
-	public Movimientos getMovimiento() {
-		return movimiento;
+	public Liquidacion getLiquidacion() {
+		return liquidacion;
 	}
 
-	public void setMovimiento(Movimientos movimiento) {
-		this.movimiento = movimiento;
+	public void setLiquidacion(Liquidacion liquidacion) {
+		this.liquidacion = liquidacion;
 	}
 
-	public Meses getMes() {
-		return mes;
+	public TipoGasto getTipoGasto() {
+		return tipoGasto;
 	}
 
-	public void setMes(Meses mes) {
-		this.mes = mes;
+	public void setTipoGasto(TipoGasto tipoGasto) {
+		this.tipoGasto = tipoGasto;
 	}
+	
+	
 
 
 }

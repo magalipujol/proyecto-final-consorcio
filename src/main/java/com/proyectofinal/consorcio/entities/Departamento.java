@@ -3,6 +3,8 @@ package com.proyectofinal.consorcio.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -13,11 +15,14 @@ public class Departamento {
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
-	private String usuario;
-	private String password;
-	private int piso;
+	private Integer piso;
 	private String dpto;
 	private Double porcentajeParticipacion;
+	@ManyToOne
+	private Edificio edificio;
+	@OneToOne
+	private Usuario usuario;
+	
 		
 	//GETTERS Y SETTERS
 
@@ -29,19 +34,11 @@ public class Departamento {
 		this.id = id;
 	}
 
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-	public void setPiso(int piso) {
+	public void setPiso(Integer piso) {
 		this.piso = piso;
 	}
 
-	public int getPiso() {
+	public Integer getPiso() {
 		return piso;
 	}
 
@@ -53,14 +50,6 @@ public class Departamento {
 		this.porcentajeParticipacion = porcentajeParticipacion;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getDpto() {
 		return dpto;
 	}
@@ -68,6 +57,23 @@ public class Departamento {
 	public void setDpto(String dpto) {
 		this.dpto = dpto;
 	}
+
+	public Edificio getEdificio() {
+		return edificio;
+	}
+
+	public void setEdificio(Edificio edificio) {
+		this.edificio = edificio;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
 	
 
 }

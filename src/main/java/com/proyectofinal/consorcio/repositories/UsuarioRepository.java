@@ -3,10 +3,10 @@ package com.proyectofinal.consorcio.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.proyectofinal.consorcio.entities.Administrador;
+import com.proyectofinal.consorcio.entities.Usuario;
 
 @Repository
-public interface AdministradorRepository extends JpaRepository<Administrador, String> {
+public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 	
 	/*@Query("SELECT a from Administrador a WHERE a.email LIKE :email")
 	public Administrador buscarPorEmail(@Param("email") String email);*/

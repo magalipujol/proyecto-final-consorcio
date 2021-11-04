@@ -1,0 +1,22 @@
+:root { 
+--orange: #f69065;
+}
+
+thead {
+    background:var(--orange);
+    color: white;
+  }
+
+  h1 {
+    color: var(--orange);
+  }
+  h2{
+    color: var(--orange);
+  }
+
+  .icono {
+    background-color: #f4434500;
+    color: var(--orange);
+    border: none;
+    border-radius: 20%;
+  }

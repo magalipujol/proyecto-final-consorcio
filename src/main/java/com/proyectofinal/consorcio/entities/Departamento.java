@@ -10,7 +10,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Departamento {
-
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -23,9 +22,6 @@ public class Departamento {
 	@OneToOne
 	private Usuario usuario;
 	
-		
-	//GETTERS Y SETTERS
-
 	public String getId() {
 		return id;
 	}
@@ -73,7 +69,4 @@ public class Departamento {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
-
 }

@@ -12,7 +12,6 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    
   </head>
   <style>
     :root {
@@ -47,18 +46,7 @@
   </style>
   <body>
     <div class="container">
-      <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Nombre del edificio:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Eggdificio 1"
-            required
-          />
-        </div>
+      <form th:action="@{/edificios/crearedificio}" method="POST">        
         <div class="form-group">
           <label for="exampleInputEmail1">Dirección:</label>
           <input
@@ -67,6 +55,7 @@
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="E.g. Pueggredón 00"
+            name="direccion"
             required
           />
         </div>

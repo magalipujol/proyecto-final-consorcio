@@ -10,8 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 import com.proyectofinal.consorcio.enums.Meses;
 
 @Entity
-public class Liquidacion {
-	
+public class Liquidacion {	
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -52,7 +51,4 @@ public class Liquidacion {
 	public void setTotal(Double total) {
 		this.total = total;
 	}
-	
-	
-	
 }

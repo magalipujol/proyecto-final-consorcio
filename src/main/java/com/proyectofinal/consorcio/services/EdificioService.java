@@ -18,7 +18,7 @@ public class EdificioService {
 	private EdificioRepository edificioRepository;
 
 	@Transactional
-	public void crear(String direccion) {
+	public Edificio crear(String direccion) throws Exception {
 		try {
 			validar(direccion);
 			
@@ -28,9 +28,11 @@ public class EdificioService {
 			edificio.setAdministrador(usuarioService.getUserByLogin());			
 
 			edificioRepository.save(edificio);
+			
+			return edificio;
 		} catch (Exception e) {
-			e.getMessage();
-			System.out.println("Error en crearEdificio");
+			throw new Exception("Error al crearEdificio");
+		
 		}
 	}
 

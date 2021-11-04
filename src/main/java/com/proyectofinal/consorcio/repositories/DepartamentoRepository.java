@@ -10,8 +10,9 @@ import org.springframework.stereotype.Repository;
 import com.proyectofinal.consorcio.entities.Departamento;
 
 @Repository
-public interface DepartamentoRepository extends JpaRepository<Departamento, String> {	
-	//Ver listar departamentos de un edificio en particular
-	@Query("SELECT d FROM Departamento d WHERE d.edificio.id = :id")
-	public List<Departamento> buscarDeptos (@Param("id") String id);
+public interface DepartamentoRepository extends JpaRepository<Departamento, String> {
+	
+	
+	@Query("SELECT d FROM Departamento d WHERE d.edificio.id = :id ORDER BY d.piso, d.dpto")
+	public List<Departamento> buscarDptos (@Param("id") Long id);
 }

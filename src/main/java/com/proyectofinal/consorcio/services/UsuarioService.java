@@ -5,9 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import com.proyectofinal.consorcio.entities.Usuario;
-import com.proyectofinal.consorcio.repositories.UsuarioRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,20 +14,28 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import com.proyectofinal.consorcio.entities.Usuario;
+import com.proyectofinal.consorcio.repositories.UsuarioRepository;
 
 @Service
 public class UsuarioService implements UserDetailsService {
     @Autowired
     private UsuarioRepository usuarioRepository;
+    
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 
     public Usuario getUserByLogin() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		return usuarioRepository.findByMail(auth.getName());
 	}
-
+    
     @Override
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepository.findByMail(mail);
@@ -45,4 +50,26 @@ public class UsuarioService implements UserDetailsService {
 			session.setAttribute("usuario", usuario);            
         return userDetails;
     }
+    
+    @Transactional
+	public Usuario crearUsuario(String mail) throws Exception{
+		try {
+			validar(mail);
+			Usuario usuario = new Usuario();
+			usuario.setMail(mail);
+			usuario.setPassword(encoder.encode("pepe"));
+
+			usuarioRepository.save(usuario);
+			return usuario;
+		} catch (Exception e) {
+			throw new Exception ("Error al crearUsuario");
+		}	
+	}
+	
+	public void validar (String mail) throws Exception {
+		if (mail==null || mail.isEmpty()) {
+			throw new Exception ("El mail no puede estar vacío");
+		} 
+		
+	}
 }

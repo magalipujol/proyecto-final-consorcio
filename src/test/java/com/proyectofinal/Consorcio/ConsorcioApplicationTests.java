@@ -25,8 +25,8 @@ class ConsorcioApplicationTests {
 	@Test
 	public void crearUsuarioTest() {
 		Usuario usuario = new Usuario();
-		usuario.setMail("pepe@gg.com");
-		usuario.setPassword(encoder.encode("pwpwpw"));
+		usuario.setMail("roberto@gg.com");
+		usuario.setPassword(encoder.encode("1234"));
 
 		Usuario usuarioCreado = usuarioRepository.save(usuario);		
 

@@ -70,7 +70,7 @@ public class DepartamentoService {
 	@Transactional(readOnly = true)
 	public List<Departamento> listarActivos() throws Exception {
 		try {
-			return departamentoRepository.buscarActivos();
+			return departamentoRepository.buscarDepartamentos();
 		} catch (Exception e) {
 			throw new Exception("Error al listar departamentos");
 		}

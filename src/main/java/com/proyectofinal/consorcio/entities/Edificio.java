@@ -8,7 +8,6 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Edificio {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -17,8 +16,6 @@ public class Edificio {
 	@OneToOne
 	private Usuario administrador;
 	
-	//GETTERS Y SETTERS
-
 	public Long getId() {
 		return id;
 	}
@@ -50,7 +47,4 @@ public class Edificio {
 	public void setAdministrador(Usuario administrador) {
 		this.administrador = administrador;
 	}
-	
-	
-	
 }

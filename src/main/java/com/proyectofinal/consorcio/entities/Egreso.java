@@ -15,8 +15,6 @@ import com.proyectofinal.consorcio.enums.TipoGasto;
 
 @Entity
 public class Egreso {
-
-	
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -33,8 +31,6 @@ public class Egreso {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
 
-
-	//GETTERS Y SETTERS
 	public String getId() {
 		return id;
 	}
@@ -90,8 +86,4 @@ public class Egreso {
 	public void setTipoGasto(TipoGasto tipoGasto) {
 		this.tipoGasto = tipoGasto;
 	}
-	
-	
-
-
 }

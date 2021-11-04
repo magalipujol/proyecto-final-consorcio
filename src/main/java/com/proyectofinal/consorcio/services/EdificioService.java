@@ -7,25 +7,25 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.proyectofinal.consorcio.entities.Edificio;
-import com.proyectofinal.consorcio.entities.Usuario;
 import com.proyectofinal.consorcio.repositories.EdificioRepository;
 
 @Service
 public class EdificioService {
+	@Autowired
+	private UsuarioService usuarioService;
 
 	@Autowired
 	private EdificioRepository edificioRepository;
 
 	@Transactional
-	public void crear(String direccion, Usuario usuario) {
+	public void crear(String direccion) {
 		try {
 			validar(direccion);
+			
 			Edificio edificio = new Edificio();
 			edificio.setDireccion(direccion);
-			edificio.setAlta(true);
-
-			// Ver usuario
-			edificio.setAdministrador(usuario);
+			edificio.setAlta(true);	
+			edificio.setAdministrador(usuarioService.getUserByLogin());			
 
 			edificioRepository.save(edificio);
 		} catch (Exception e) {
@@ -74,7 +74,7 @@ public class EdificioService {
 	public void validar(String direccion) throws Exception {
 		try {
 			if (direccion == null || direccion.isEmpty()) {
-				throw new Exception("La dirección no puede estar vacía");
+				throw new Exception("La direcciï¿½n no puede estar vacï¿½a");
 			}
 
 		} catch (Exception e) {

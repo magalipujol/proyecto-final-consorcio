@@ -8,7 +8,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Usuario {
-
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -17,8 +16,6 @@ public class Usuario {
 	private String mail;
 	private String password;
 
-	//GETTERS Y SETTERS
-	
 	public String getId() {
 		return id;
 	}
@@ -49,7 +46,5 @@ public class Usuario {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	
+	}	
 }

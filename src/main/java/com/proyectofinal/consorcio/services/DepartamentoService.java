@@ -28,8 +28,7 @@ public class DepartamentoService {
 			departamento.setEdificio(edificio);
 			//Ver usuario
 			departamento.setUsuario(usuario);
-
-
+			
 			departamentoRepository.save(departamento);
 		} catch (Exception e) {
 			e.getMessage();

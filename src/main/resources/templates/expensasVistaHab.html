@@ -5,74 +5,88 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/53584266fb.js" crossorigin="anonymous"></script>
+
   <title>Eggdificio</title>
   <!-- Bootstrap Stylesheet -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 
-<style>
-  :root {
-    /*variables*/
-    --orange: #f69065;
-  }
-
-  .card {
-    /*todo lo que empieza con un punto es una clase */
-    display: flex;
-    margin: 5rem;
-    padding: 1rem;
-  }
-
-  body {
-    
-
-  }
-
-  .btn-primary {
-    background-color: var(--orange);
-    border: none;
-    margin-top: 0.5rem;
-  }
-
-  a {
-    color: var(--orange)
-  }
-  </style>
 
 <body>
-  <h1>Eggpensas</h1>
 
-  <div class="container"></div>
-  
-  <h2>Gastos Eggdinarios</h2>
+  <!-- EGGPENSAS -->
+  <head>
+    <h1>Eggpensas</h1>
+  </head>
 
-  <table>
-    <tr>
-      <th>
-        <strong>Categorias</strong>
-      </th>
+ <!-- EGGDINARIOS -->
+  <form>
+    <div class="container">
+      <h2>Gastos Eggdinarios</h2>
+      <label for="exampleInputTax">Buscar:</label>
+      <input type="text" class="form-control" placeholder="" required />
+    </div>
+  </form>
 
-      <th>
-        <strong>Costo</strong>
-      </th>
+  <div class="container">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th> Categorias </th>
+          <th> Costo </th>
+          <th> Comprobante</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td> Gas </td>
+          </td>
+          <td> 2525 </td>
+          </td>
+          <td> <button type="button" class="icono fas fa-angle-down"></button> </td>
+      
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+     
 
-      <th>
-        <strong>Comprobante</strong>
-      </th>
+<!-- EGGTRAORDINARIOS -->
+<form>
+  <div class="container">
+    <h2>Gastos Eggdinarios</h2>
+    <label for="exampleInputTax">Buscar:</label>
+    <input type="text" class="form-control" placeholder="" required />
+  </div>
+</form>
 
-    </tr>
-    <td>Gas</td>
-    <td>1000</td>
-    <td> </td>
-
-    </tr>
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th> Categorias </th>
+        <th> Costo </th>
+        <th> Comprobante</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> Gas </td>
+        </td>
+        <td> 2525 </td>
+        </td>
+        <td> <button type="button" class="icono fas fa-angle-down"></button> </td>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>
-
-  
-
+   
 
 </body>
-
 </html>

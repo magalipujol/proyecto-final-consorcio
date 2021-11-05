@@ -12,6 +12,11 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    />
 </head>
 <style>
     :root {
@@ -40,6 +45,18 @@
 
     .btn-secondary:hover {
       background-color: var(--orange);
+      border: none;
+      margin-top: 0.5rem;
+    }
+
+    .btn-icon {
+      background-color: white;
+      border: none;
+      margin-top: 0.5rem;
+      font-weight: 600;
+    }
+    .btn-icon:hover {
+      color: var(--orange);
       border: none;
       margin-top: 0.5rem;
     }
@@ -125,6 +142,8 @@
                       <th scope="col">Unidad</th>
                       <th scope="col">Email</th>
                       <th scope="col">%</th>
+                      <th scope="col">Modificar</th>
+                      <th scope="col">Eliminar</th>
         </tr>
     </thead>
         <tbody>
@@ -133,10 +152,12 @@
             <td th:text="${departamento.dpto}"></td>
             <td th:text="${departamento.usuario.mail}"></td>
             <td th:text="${departamento.porcentajeParticipacion}"></td>
+            <td th><button class="btn btn-icon"><i class="fas fa-edit"> </i></button></td>
+            <td th><button class="btn btn-icon"><i class="fas fa-trash-alt"></i></button></td>
         </tr>
         </tbody>
     </table>
-    <button class="btn btn-secondary">Volver</button>
+    <button id="back-btn" class="btn btn-secondary">Volver</button>
 </div>
 </body>
 </html>

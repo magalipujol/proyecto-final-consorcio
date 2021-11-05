@@ -43,7 +43,7 @@
       border: none;
       margin-top: 0.5rem;
     }
-   
+
   </style>
 <body>
     <div class="container" id="agregar-deptos-container">
@@ -54,16 +54,16 @@
           <div class="container">
             <div class="row">
               <div class="col-sm">
-                  <input 
+                  <input
                   hidden
                   name="id_edificio"
                   th:value="${edificio}"
-                  id="exampleInputPassword1"      
+                  id="exampleInputPassword1"
                 />
                 <label for="exampleInputPassword1"
                   >Piso</label
                 >
-                <input 
+                <input
                   type="text"
                   class="form-control"
                   name="piso"
@@ -76,7 +76,7 @@
                 <label for="exampleInputPassword1"
                   >Unidad</label
                 >
-                <input 
+                <input
                   type="text"
                   name="dpto"
                   class="form-control"
@@ -101,7 +101,7 @@
                 <label for="exampleInputPassword1"
                   >Porcentaje de contribución: </label
                 >
-                <input 
+                <input
                   type="text"
                   name="porcentajeParticipacion"
                   class="form-control"
@@ -121,26 +121,22 @@
           <table class="table">
               <thead>
                   <tr>
-                      <th scope="col">#</th>
                       <th scope="col">Piso</th>
                       <th scope="col">Unidad</th>
                       <th scope="col">Email</th>
-
-            <th scope="col">%</th>
+                      <th scope="col">%</th>
         </tr>
     </thead>
         <tbody>
           <tr th:each="departamento : ${departamentos}">
-              <th scope="row">1</th>
             <td th:text="${departamento.piso}"></td>
             <td th:text="${departamento.dpto}"></td>
             <td th:text="${departamento.usuario.mail}"></td>
             <td th:text="${departamento.porcentajeParticipacion}"></td>
-
         </tr>
         </tbody>
     </table>
+    <button class="btn btn-secondary">Volver</button>
 </div>
-<button id="btn btn-secondary">Añadir todos los departamentos</button>
 </body>
 </html>

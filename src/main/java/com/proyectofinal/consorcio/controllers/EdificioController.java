@@ -35,6 +35,6 @@ public class EdificioController {
 		} catch (Exception e) {
 			throw new Exception ("Error en controlador edificio");
 		}
-        
+   
     }
 }

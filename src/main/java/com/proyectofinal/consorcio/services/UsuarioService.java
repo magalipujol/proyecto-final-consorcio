@@ -68,8 +68,13 @@ public class UsuarioService implements UserDetailsService {
 	
 	public void validar (String mail) throws Exception {
 		if (mail==null || mail.isEmpty()) {
-			throw new Exception ("El mail no puede estar vacío");
+			throw new Exception ("El mail no puede estar vacio");
 		} 
+		
+		//VER MANEJO DE ERRRORES:
+		if (mail.equals(usuarioRepository.findByMail(mail).getMail())) {
+			throw new Exception ("El mail ya existe");
+		}
 		
 	}
 }

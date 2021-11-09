@@ -17,6 +17,7 @@ public class Departamento {
 	private Integer piso;
 	private String dpto;
 	private Double porcentajeParticipacion;
+	private Boolean alta;
 	@ManyToOne
 	private Edificio edificio;
 	@OneToOne
@@ -44,6 +45,15 @@ public class Departamento {
 
 	public void setPorcentajeParticipacion(Double porcentajeParticipacion) {
 		this.porcentajeParticipacion = porcentajeParticipacion;
+	}
+	
+
+	public Boolean getAlta() {
+		return alta;
+	}
+
+	public void setAlta(Boolean alta) {
+		this.alta = alta;
 	}
 
 	public String getDpto() {

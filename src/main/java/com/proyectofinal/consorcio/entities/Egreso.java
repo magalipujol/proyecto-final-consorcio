@@ -3,6 +3,8 @@ package com.proyectofinal.consorcio.entities;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -23,6 +25,7 @@ public class Egreso {
 	private Double monto;
 	private Boolean alta;
 	
+	@Enumerated(EnumType.STRING)
 	private TipoGasto tipoGasto;
 	
 	@ManyToOne

@@ -28,9 +28,9 @@ public class DepartamentoService {
 			departamento.setPiso(piso);
 			departamento.setDpto(dpto);
 			departamento.setPorcentajeParticipacion(porcentaje);
-			//Ver edificio
+			
 			departamento.setEdificio(edificioRepository.findById(id_edificio).get());
-			//Ver usuario
+			//Ver usuario (roles)
 			departamento.setUsuario(usuario);
 
 
@@ -49,6 +49,7 @@ public class DepartamentoService {
 			departamento.setPiso(piso);
 			departamento.setDpto(dpto);
 			departamento.setPorcentajeParticipacion(porcentaje);
+			departamento.setAlta(true);
 			
 			departamentoRepository.save(departamento);
 		} catch (Exception e) {
@@ -62,7 +63,9 @@ public class DepartamentoService {
 		try {
 			Departamento departamento = departamentoRepository.findById(id).get();
 
-			departamentoRepository.delete(departamento);
+			departamento.setAlta(false);
+			
+			departamentoRepository.save(departamento);
 
 		} catch (Exception e) {
 			e.getMessage();

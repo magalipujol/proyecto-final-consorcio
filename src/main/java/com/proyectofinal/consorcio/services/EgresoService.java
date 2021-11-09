@@ -90,7 +90,7 @@ public class EgresoService {
 			if (detalle.equals(null) || detalle.isEmpty() || monto == null || 
 					(!TipoGasto.ORDINARIO.toString().equals(tipoGasto) && !TipoGasto.EXTRAORDINARIO.toString().equals(tipoGasto)) || 
 							id_liquidacion.equals(null) || id_liquidacion.isEmpty()) {
-				throw new Exception("Este dato no puede ser nulo o estar vacÃ­o");
+				throw new Exception("Este dato no puede ser nulo o estar vacío");
 			}
 
 		} catch (Exception e) {

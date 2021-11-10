@@ -15,4 +15,8 @@ public interface DepartamentoRepository extends JpaRepository<Departamento, Stri
 	
 	@Query("SELECT d FROM Departamento d WHERE d.edificio.id = :id ORDER BY d.piso, d.dpto")
 	public List<Departamento> buscarDptos (@Param("id") Long id);
+	
+	@Query("SELECT d FROM Departamento d WHERE d.usuario.id LIKE :id")
+	public Departamento buscarPorUsuario (@Param("id") String id);
+	
 }

@@ -1,5 +1,6 @@
 package com.proyectofinal.consorcio.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.proyectofinal.consorcio.entities.Departamento;
+import com.proyectofinal.consorcio.entities.Edificio;
+import com.proyectofinal.consorcio.entities.Liquidacion;
 import com.proyectofinal.consorcio.entities.Usuario;
 import com.proyectofinal.consorcio.repositories.DepartamentoRepository;
 import com.proyectofinal.consorcio.repositories.EdificioRepository;
+import com.proyectofinal.consorcio.repositories.LiquidacionRepository;
 
 @Service
 public class DepartamentoService {
@@ -18,6 +22,8 @@ public class DepartamentoService {
 	private DepartamentoRepository departamentoRepository;
 	@Autowired
 	private EdificioRepository edificioRepository;
+	@Autowired
+	private LiquidacionRepository liquidacionRepository;
 
 	@Transactional
 	public void crear(Integer piso, String dpto, Double porcentaje, Long id_edificio, Usuario usuario) {
@@ -81,6 +87,27 @@ public class DepartamentoService {
 		} catch (Exception e) {
 			throw new Exception("Error al listar departamentos");
 		}
+	}
+	
+	public List<Double> totalesDepartamentos (String id_liquidacion) throws Exception {
+		try {
+			Liquidacion liquidacion = liquidacionRepository.findById(id_liquidacion).get();
+			Edificio edificio = liquidacion.getEdificio();
+			
+			List<Departamento>departamentos = listarActivos(edificio.getId());
+			
+			List <Double> totalesDepartamentos = new ArrayList<Double>();
+			
+			for (Departamento dpto : departamentos) {
+				Double total = liquidacion.getTotal() / 100 * dpto.getPorcentajeParticipacion();
+				totalesDepartamentos.add(total);
+			}
+			
+			return totalesDepartamentos;
+		} catch (Exception e) {
+			throw new Exception ("Error en totalesDepartemtno");
+		}
+		
 	}
 
 	public void validar(Integer piso, String dpto, Double porcentaje) throws Exception {

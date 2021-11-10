@@ -72,6 +72,16 @@ public class EdificioService {
 			throw new Exception("Error al listar edificios");
 		}
 	}
+	
+	@Transactional(readOnly = true)
+	public Edificio buscarPorId (Long id) throws Exception {
+		try {
+			Edificio edificio = edificioRepository.findById(id).get();
+			return edificio;
+		} catch (Exception e) {
+			throw new Exception ("Error al buscar edificio por id");
+		}
+	}
 
 	public void validar(String direccion) throws Exception {
 		try {

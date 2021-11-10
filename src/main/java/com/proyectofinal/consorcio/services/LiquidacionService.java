@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.proyectofinal.consorcio.entities.Departamento;
 import com.proyectofinal.consorcio.entities.Liquidacion;
+import com.proyectofinal.consorcio.entities.Usuario;
 import com.proyectofinal.consorcio.enums.Meses;
+import com.proyectofinal.consorcio.repositories.DepartamentoRepository;
 import com.proyectofinal.consorcio.repositories.EdificioRepository;
 import com.proyectofinal.consorcio.repositories.LiquidacionRepository;
 
@@ -19,6 +22,12 @@ public class LiquidacionService {
 	
 	@Autowired
 	private LiquidacionRepository liquidacionRepository;
+	
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@Autowired
+	private DepartamentoRepository departamentoRepository;
 	
 	
 	
@@ -95,6 +104,16 @@ public class LiquidacionService {
 	}
 	
 	@Transactional
+	public Liquidacion buscarPorId (String id) throws Exception {
+		try {
+			Liquidacion liquidacion = liquidacionRepository.findById(id).get();
+			return liquidacion;
+		} catch (Exception e) {
+			throw new Exception ("Error al buscar liquidacion por id");
+		}
+	}
+	
+	@Transactional
 	public Double total (String id) throws Exception{
 		try {
 			Liquidacion liquidacion = liquidacionRepository.findById(id).get();
@@ -127,6 +146,45 @@ public class LiquidacionService {
 			
 		} catch (Exception e) {
 			throw new Exception("Error al calcular el total de los gastos extraordinarios");
+		}
+	}
+	
+	public Double totalDepartamento (String id_liquidacion) throws Exception{
+		try {
+		Usuario usuario = usuarioService.getUserByLogin();
+		Departamento departamento = departamentoRepository.buscarPorUsuario(usuario.getId());
+		
+		Double totalDepartamento = (liquidacionRepository.totalEgresos(id_liquidacion)/100)*departamento.getPorcentajeParticipacion();
+		
+		return totalDepartamento;
+		} catch (Exception e) {
+			throw new Exception ("Error en totalDepartamento");
+		}
+	}
+	
+	public Double totalOrdinariosDepartamento (String id_liquidacion) throws Exception{
+		try {
+		Usuario usuario = usuarioService.getUserByLogin();
+		Departamento departamento = departamentoRepository.buscarPorUsuario(usuario.getId());
+		
+		Double totalOrdinariosDepartamento = (liquidacionRepository.totalOrdinarios(id_liquidacion)/100)*departamento.getPorcentajeParticipacion();
+		
+		return totalOrdinariosDepartamento;
+		} catch (Exception e) {
+			throw new Exception ("Error en totalOrdinariosDepartamento");
+		}
+	}
+	
+	public Double totalExtraordinariosDepartamento (String id_liquidacion) throws Exception{
+		try {
+		Usuario usuario = usuarioService.getUserByLogin();
+		Departamento departamento = departamentoRepository.buscarPorUsuario(usuario.getId());
+		
+		Double totalExtraordinariosDepartamento = (liquidacionRepository.totalExtraordinarios(id_liquidacion)/100)*departamento.getPorcentajeParticipacion();
+		
+		return totalExtraordinariosDepartamento;
+		} catch (Exception e) {
+			throw new Exception ("Error en totalExtraordinariosDepartamento");
 		}
 	}
 	

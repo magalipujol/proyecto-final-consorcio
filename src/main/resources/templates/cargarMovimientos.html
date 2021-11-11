@@ -16,15 +16,7 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
-  <!-- Introducción CSS
-<link href="../../assets/common/commonCss.css" rel="stylesheet" />
-<link href="../../assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
-<link href="../../assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
- Introduciendo js
-<script src="../../assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script src="../../assets/plugins/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
-<script src="../../assets/plugins/bootstrap-daterangepicker/moment.js"></script>
-<script src="../../assets/plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script> -->
+
 </head>
 <h1>Movimientos</h1>
 
@@ -43,7 +35,7 @@
                     id='dateVal' readonly /> <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
-            </div>
+            </div>  
         </div>
 
           <div class="col-md-1 control-label text-right">Año</div>
@@ -69,7 +61,7 @@
             <option value="1">Julio</option>
             <option value="2">Agosto</option>
             <option value="3">Septiembre</option>
-            <option value="1">octubre</option>
+            <option value="1">Octubre</option>
             <option value="2">Noviembre</option>
             <option value="3">Diciembre</option>
           </select>
@@ -90,33 +82,33 @@
 
         </div>
 
-          <div class="mb-3">
-            <label for="formGroupExampleInput" class="form-label">Detalle</label>
-            <input type="text" class="form-control" name="detalle" id="formGroupExampleInput">
-          </div>
-
-          <div><label>Monto $
-              <input type="number" placeholder="0.00" required name="price" min="0" value="0" step="0.01"
-                title="Currency" pattern="^\d+(?:\.\d{1,2})?$"></label></div>
-
-
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="checkBox" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
-              Gasto ordinario
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="checkBox" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-              Gasto Extraordinario
-            </label>
-          </div>
-
+        <div class="mb-3">
+          <label for="formGroupExampleInput" class="form-label">Detalle</label>
+          <input type="text" class="form-control" name="detalle" id="formGroupExampleInput">
         </div>
-        <button class="btn btn-secondary type=" submit">Guardar</button>
+
+        <div><label>Monto $
+            <input type="number" placeholder="0.00" required name="price" min="0" value="0" step="0.01" title="Currency"
+              pattern="^\d+(?:\.\d{1,2})?$"></label></div>
+
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="checkBox" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Gasto ordinario
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="checkBox" id="flexRadioDefault2" checked>
+          <label class="form-check-label" for="flexRadioDefault2">
+            Gasto Extraordinario
+          </label>
+        </div>
+
       </div>
+      <button class="btn btn-secondary type=" submit">Guardar</button>
+  </div>
   </div>
 
   <br />
@@ -146,28 +138,14 @@
       </tbody>
     </table>
 
-    <a href="http://127.0.0.1:5500/src/main/resources/templates/verEdificios.html" <button id="back-btn"
+    <a href="http://127.0.0.1:5500/src/main/resources/templates/expensasVistaAdmi.html" <button id="back-btn"
       class="btn btn-secondary">Volver</button></a>
 
-    <!-- <script>
-      function Timeinit() {
-	 // inicialización de tiempo
-		$("#dateTime").datepicker({
-		 startView: 'años', // Iniciar rango de selección
-		 maxViewMode: 'años', // Rango de selección máximo
-		 minViewMode: 'months', // Rango de selección mínimo
-		 todayHighlight: true, // resaltado de hora actual
-		 autoclose: 'true', // la ventana emergente desaparece automáticamente después de seleccionar la hora
-		 formato: 'aaaa-mm', // formato de hora
-		 idioma: 'zh-CN', // chino
-		 // todayBtn: "vinculado", // Mostrar el botón Hoy
-		 clearBtn: true, // botón Clear, y el botón de hoy solo puede mostrar uno
 
-	});
-}-->
-<button id="back-btn" class="btn btn-secondary">Liquidar todo</button>
+    <button id="back-btn" class="btn btn-secondary">Liquidar todo</button>
 
-    </script>
+    <a href="http://127.0.0.1:5500/src/main/resources/templates/login.html" <button id="back-btn" class="btn btn-secondary">Log Out</button></a>
+    
 </body>
 
 </html>

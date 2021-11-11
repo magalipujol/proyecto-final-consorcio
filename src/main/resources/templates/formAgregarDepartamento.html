@@ -63,6 +63,9 @@
 
   </style>
 <body>
+  <div id="app">
+    <navbar></navbar>
+  </div>
     <div class="container" id="agregar-deptos-container">
     <form th:action="@{/departamentos/agregar}" method="POST">
         <div class="form-group">
@@ -159,5 +162,9 @@
     </table>
     <button id="back-btn" class="btn btn-secondary">Volver</button>
 </div>
+<script src="https://unpkg.com/vue@next"></script>
+
+<script src="js/VueApp.js"></script>
+
 </body>
 </html>

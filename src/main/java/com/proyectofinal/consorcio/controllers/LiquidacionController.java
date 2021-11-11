@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,13 +31,13 @@ public class LiquidacionController {
 	@Autowired
 	private EgresoService egresoService;
 
-	@GetMapping("/cargar")
-	public String crearLiquidacion(ModelMap model, Long id_edificio) throws Exception {
+	@GetMapping("/cargar/{id_edificio}")
+	public String crearLiquidacion(ModelMap model,@PathVariable Long id_edificio) throws Exception {
 		try {
 			Edificio edificio = edificioService.buscarPorId(id_edificio);
 			model.addAttribute("edificio", edificio);
-
-			return "crear-liquidacion.html";
+			//<a class="btn btn-primary" th:href="@{./cargar/}+${edificio}" role="button">Cargar Liquidacion</a>
+			return "cargarMovimientos.html";
 		} catch (Exception e) {
 			throw new Exception("Error en controlador crearLiquidacion");
 		}

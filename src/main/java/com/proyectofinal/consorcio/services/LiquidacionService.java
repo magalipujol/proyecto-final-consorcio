@@ -86,18 +86,18 @@ public class LiquidacionService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Liquidacion> listarLiquidacionesAdmin() throws Exception {
+	public List<Liquidacion> listarLiquidacionesAdmin(Long id_edificio) throws Exception {
 		try {
-			return liquidacionRepository.listarLiquidacionesAdmin();
+			return liquidacionRepository.listarLiquidacionesAdmin(id_edificio);
 		} catch (Exception e) {
 			throw new Exception("Error al listar liquidaciones para el Administrador");
 		}
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Liquidacion> listarLiquidacionesUsuario() throws Exception {
+	public List<Liquidacion> listarLiquidacionesUsuario(String id) throws Exception {
 		try {
-			return liquidacionRepository.listarLiquidacionesUsuario();
+			return liquidacionRepository.listarLiquidacionesUsuario(id);
 		} catch (Exception e) {
 			throw new Exception("Error al listar liquidaciones para el Usuario");
 		}

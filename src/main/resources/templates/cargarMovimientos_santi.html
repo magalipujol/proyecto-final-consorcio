@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/53584266fb.js" crossorigin="anonymous"></script>
+
+  <title>Cargar Movimientos</title>
+  <!-- Bootstrap Stylesheet -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+
+</head>
+<h1>Movimientos</h1>
+
+<body>
+
+  <div th:if="${#strings.isEmpty(liquidacion.id)}" class="container" id="agregar-movimiento">
+    <form th:action="@{/liquidaciones/guardar}" method="POST">
+      <div class="form-group">
+        <p>Período</p>
+        <hr />
+        <input
+        hidden
+        name="id_edificio"
+        th:value="${edificio.id}"
+        />
+        <div class="col-md-1 control-label text-right">Mes</div>
+        <div class="col-md-3">
+            <div class="input-group date" id="dateTime">
+                <select type="text" class="form-control form_datetime_2 input-sm bg-white"
+                    id='dateVal' readonly> <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar">
+                      <option th:each="mes : ${T(com.proyectofinal.consorcio.enums.Meses).values()}" th:value="${mes}" th:text="${mes}"></option>
+                    </span>
+                </span>
+<<<<<<< HEAD
+            </div>  
+=======
+                </select>
+            </div>
+>>>>>>> 548b75e88492cbf5216a1055d18c68d782c4aef2
+        </div>
+
+          <div class="col-md-1 control-label text-right">Año</div>
+          <div class="col-md-3">
+              <div class="input-group date" id="dateTime">
+                  <input type="text" class="form-control form_datetime_2 input-sm bg-white"
+                      id='dateVal' readonly /> <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+          </div>
+<<<<<<< HEAD
+}-->
+        <div class="container">
+          Periodo
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Mes</option>
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="1">Abril</option>
+            <option value="2">Mayo</option>
+            <option value="3">Junio</option>
+            <option value="1">Julio</option>
+            <option value="2">Agosto</option>
+            <option value="3">Septiembre</option>
+            <option value="1">Octubre</option>
+            <option value="2">Noviembre</option>
+            <option value="3">Diciembre</option>
+          </select>
+
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Ano</option>
+            <option value="1">2000</option>
+            <option value="2">2001</option>
+            <option value="3">2002</option>
+            <option value="1">2003</option>
+            <option value="2">2004</option>
+            <option value="3">2005</option>
+            <option value="3">2020</option>
+            <option value="3">2021</option>
+          </select>
+
+          <button style="padding: 10px" class="btn btn-secondary type=" submit">Crear liquidación</button>
+
+        </div>
+
+        <div class="mb-3">
+          <label for="formGroupExampleInput" class="form-label">Detalle</label>
+          <input type="text" class="form-control" name="detalle" id="formGroupExampleInput">
+        </div>
+=======
+        </div>
+        <button class="btn btn-secondary" type="submit">Crear liquidación</button>
+     </div>
+       </form>
+       <form action="@{/egresos/guardar}">
+        <input
+        hidden
+        name="id_liquidacion"
+        th:value="${liquidacion.id}"
+        />
+        <div>
+          <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">Detalle</label>
+            <input type="text" class="form-control" name="detalle" id="formGroupExampleInput" >
+          </div>
+
+          <div><label>Monto $
+            <input type="number" placeholder="0.00" required name="price" min="0" value="0" step="0.01" title="Currency" pattern="^\d+(?:\.\d{1,2})?$"></label></div>
+>>>>>>> 548b75e88492cbf5216a1055d18c68d782c4aef2
+
+        <div><label>Monto $
+            <input type="number" placeholder="0.00" required name="price" min="0" value="0" step="0.01" title="Currency"
+              pattern="^\d+(?:\.\d{1,2})?$"></label></div>
+
+<<<<<<< HEAD
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="checkBox" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Gasto ordinario
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="checkBox" id="flexRadioDefault2" checked>
+          <label class="form-check-label" for="flexRadioDefault2">
+            Gasto Extraordinario
+          </label>
+        </div>
+
+=======
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="checkBox" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Gasto ordinario
+                </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="checkBox" id="flexRadioDefault2" checked>
+              <label class="form-check-label" for="flexRadioDefault2">
+                Gasto Extraordinario
+              </label>
+            </div>
+
+          </div>
+             <button class="btn btn-secondary" type="submit">Crear</button>
+          </div>
+        </form>
+>>>>>>> 548b75e88492cbf5216a1055d18c68d782c4aef2
+      </div>
+      <button class="btn btn-secondary type=" submit">Guardar</button>
+  </div>
+  </div>
+
+  <br />
+      </div>
+      <div class="container">
+
+          <table class="table">
+              <thead>
+                  <tr>
+
+                      <th scope="col">Detalle</th>
+                      <th scope="col">Monto</th>
+                      <th scope="col">Tipo de gasto</th>
+                      <th scope="col">Editar</th>
+                      <th scope="col">Eliminar</th>
+        </tr>
+    </thead>
+        <tbody>
+          <tr th:each="egreso : ${egresos}">
+            <td th:text="${egreso.detalle}"></td>
+            <td th:text="${egreso.monto}"></td>
+            <td th:text="${egreso.tipoGasto}"></td>
+            <td th><button class="btn btn-icon"><i class="fas fa-edit"> </i></button></td>
+            <td th><button class="btn btn-icon"><i class="fas fa-trash-alt"></i></button></td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-secondary" type="submit">Agregar movimiento</button>
+    <button class="btn btn-secondary" type="submit">Volver</button>
+
+<<<<<<< HEAD
+    <a href="http://127.0.0.1:5500/src/main/resources/templates/expensasVistaAdmi.html" <button id="back-btn"
+      class="btn btn-secondary">Volver</button></a>
+
+
+    <button id="back-btn" class="btn btn-secondary">Liquidar todo</button>
+
+    <a href="http://127.0.0.1:5500/src/main/resources/templates/login.html" <button id="back-btn" class="btn btn-secondary">Log Out</button></a>
+    
+=======
+
+
+
+</body>
+>>>>>>> 548b75e88492cbf5216a1055d18c68d782c4aef2
+</body>
+
+</html>

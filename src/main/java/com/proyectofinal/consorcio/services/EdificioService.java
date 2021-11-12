@@ -37,15 +37,15 @@ public class EdificioService {
 	}
 
 	@Transactional
-	public void modificar(Long id, String direccion) {
+	public Edificio modificar(Long id, String direccion) throws Exception{
 		try {
 			validar(direccion);
 			Edificio edificio = edificioRepository.findById(id).get();
 			edificio.setDireccion(direccion);
 			edificioRepository.save(edificio);
+			return edificio;
 		} catch (Exception e) {
-			e.getMessage();
-			System.out.println("Error en modificarEdificio");
+			throw new Exception ("Error en modificarEdificio");
 		}
 	}
 

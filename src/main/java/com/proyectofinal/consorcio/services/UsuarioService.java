@@ -41,7 +41,7 @@ public class UsuarioService implements UserDetailsService {
         Usuario usuario = usuarioRepository.findByMail(mail);
 
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(usuario.getMail().equals("pepe@gg.com") ? "ADMIN" : "USER"));
+        authorities.add(new SimpleGrantedAuthority(usuario.getMail().equals("pepe@gg.com") ? "ROLE_ADMIN" : "ROLE_USER"));
 
         UserDetails userDetails = new User(usuario.getMail(), usuario.getPassword(), authorities);
 
@@ -68,7 +68,7 @@ public class UsuarioService implements UserDetailsService {
 	
 	public void validar (String mail) throws Exception {
 		if (mail==null || mail.isEmpty() || mail.contains("  ")) {
-			throw new Exception ("Debe ingresar un mail válido");
+			throw new Exception ("Debe ingresar un mail vï¿½lido");
 		} 
 		
 		//VER MANEJO DE ERRRORES:

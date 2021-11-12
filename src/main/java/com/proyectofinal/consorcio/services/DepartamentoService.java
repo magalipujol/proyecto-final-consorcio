@@ -109,6 +109,15 @@ public class DepartamentoService {
 		}
 		
 	}
+	
+	public Departamento buscarPorId (String id) throws Exception {
+		try {
+			Departamento departamento = departamentoRepository.findById(id).get();
+			return departamento;
+		} catch (Exception e) {
+			throw new Exception ("Error en buscarPorId departamento");
+		}
+	}
 
 	public void validar(Integer piso, String dpto, Double porcentaje) throws Exception {
 		try {

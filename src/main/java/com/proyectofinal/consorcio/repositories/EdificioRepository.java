@@ -12,6 +12,6 @@ import com.proyectofinal.consorcio.entities.Edificio;
 public interface EdificioRepository extends JpaRepository<Edificio, Long>{
 	
 	@Query("SELECT e FROM Edificio e WHERE e.alta = true")
-	public List<Edificio> buscarActivos ();
+	public List<Edificio> buscarActivos ();	
 
 }

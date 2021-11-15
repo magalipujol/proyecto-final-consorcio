@@ -15,8 +15,7 @@ import com.proyectofinal.consorcio.repositories.EdificioRepository;
 import com.proyectofinal.consorcio.repositories.LiquidacionRepository;
 
 @Service
-public class LiquidacionService {
-	
+public class LiquidacionService {	
 	@Autowired
 	private EdificioRepository edificioRepository;
 	
@@ -28,57 +27,47 @@ public class LiquidacionService {
 	
 	@Autowired
 	private DepartamentoRepository departamentoRepository;
-	
-	
-	
+		
 	@Transactional
 	public Liquidacion crear (String mes, Integer anio, Long id_edificio) throws Exception{
 		try {
-	
 			Liquidacion liquidacion = new Liquidacion();
+
 			liquidacion.setMes(Meses.valueOf(mes));
 			liquidacion.setAnio(anio);
-			liquidacion.setEdificio(edificioRepository.findById(id_edificio).get());
-		
+			liquidacion.setEdificio(edificioRepository.findById(id_edificio).get());	
 			liquidacion.setAlta(true);
 			liquidacion.setPublicar(false);
 			
-			liquidacionRepository.save(liquidacion);
-			
+			liquidacionRepository.save(liquidacion);			
 			return liquidacion;
 		} catch (Exception e) {
-			throw new Exception ("Error en crearLiquidacion");
-		}
-		
-		}
+			throw new Exception ("Error en crear liquidacion");
+		}		
+	}
 	
 	@Transactional
 	public Liquidacion modificar (String id, String mes, Integer anio) throws Exception{
-		try {
-	
+		try {	
 			Liquidacion liquidacion = liquidacionRepository.findById(id).get();
+
 			liquidacion.setMes(Meses.valueOf(mes));
 			liquidacion.setAnio(anio);
-				
-						
-			liquidacionRepository.save(liquidacion);
-			
+										
+			liquidacionRepository.save(liquidacion);			
 			return liquidacion;
 		} catch (Exception e) {
-			throw new Exception ("Error en modificarLiquidacion");
-		}
-		
-		}
+			throw new Exception ("Error en modificar liquidacion");
+		}		
+	}
 	
 	@Transactional
 	public void eliminar(String id) {
-		try {
-			
+		try {			
 			Liquidacion liquidacion = liquidacionRepository.findById(id).get();
 
 			liquidacion.setAlta(false);
-			liquidacionRepository.save(liquidacion);
-			
+			liquidacionRepository.save(liquidacion);			
 		} catch (Exception e) {
 			e.getMessage();
 			System.out.println("Error al eliminar liquidación");
@@ -118,8 +107,8 @@ public class LiquidacionService {
 		try {
 			Liquidacion liquidacion = liquidacionRepository.findById(id).get();
 			liquidacion.setTotal(liquidacionRepository.totalEgresos(id));
-			return liquidacion.getTotal();
-			
+
+			return liquidacion.getTotal();			
 		} catch (Exception e) {
 			throw new Exception("Error al calcular el total de la liquidación");
 		}
@@ -130,8 +119,8 @@ public class LiquidacionService {
 		try {
 			Liquidacion liquidacion = liquidacionRepository.findById(id).get();
 			liquidacion.setTotalOrdinarios(liquidacionRepository.totalOrdinarios(id));
-			return liquidacion.getTotalOrdinarios();
-			
+
+			return liquidacion.getTotalOrdinarios();			
 		} catch (Exception e) {
 			throw new Exception("Error al calcular el total de los gastos ordinarios");
 		}
@@ -142,8 +131,8 @@ public class LiquidacionService {
 		try {
 			Liquidacion liquidacion = liquidacionRepository.findById(id).get();
 			liquidacion.setTotalExtraordinarios(liquidacionRepository.totalExtraordinarios(id));
-			return liquidacion.getTotalExtraordinarios();
-			
+
+			return liquidacion.getTotalExtraordinarios();			
 		} catch (Exception e) {
 			throw new Exception("Error al calcular el total de los gastos extraordinarios");
 		}
@@ -151,12 +140,12 @@ public class LiquidacionService {
 	
 	public Double totalDepartamento (String id_liquidacion) throws Exception{
 		try {
-		Usuario usuario = usuarioService.getUserByLogin();
-		Departamento departamento = departamentoRepository.buscarPorUsuario(usuario.getId());
-		
-		Double totalDepartamento = (liquidacionRepository.totalEgresos(id_liquidacion)/100)*departamento.getPorcentajeParticipacion();
-		
-		return totalDepartamento;
+			Usuario usuario = usuarioService.getUserByLogin();
+			Departamento departamento = departamentoRepository.buscarPorUsuario(usuario.getId());
+			
+			Double totalDepartamento = (liquidacionRepository.totalEgresos(id_liquidacion)/100)*departamento.getPorcentajeParticipacion();
+			
+			return totalDepartamento;
 		} catch (Exception e) {
 			throw new Exception ("Error en totalDepartamento");
 		}
@@ -164,12 +153,12 @@ public class LiquidacionService {
 	
 	public Double totalOrdinariosDepartamento (String id_liquidacion) throws Exception{
 		try {
-		Usuario usuario = usuarioService.getUserByLogin();
-		Departamento departamento = departamentoRepository.buscarPorUsuario(usuario.getId());
-		
-		Double totalOrdinariosDepartamento = (liquidacionRepository.totalOrdinarios(id_liquidacion)/100)*departamento.getPorcentajeParticipacion();
-		
-		return totalOrdinariosDepartamento;
+			Usuario usuario = usuarioService.getUserByLogin();
+			Departamento departamento = departamentoRepository.buscarPorUsuario(usuario.getId());
+			
+			Double totalOrdinariosDepartamento = (liquidacionRepository.totalOrdinarios(id_liquidacion)/100)*departamento.getPorcentajeParticipacion();
+			
+			return totalOrdinariosDepartamento;
 		} catch (Exception e) {
 			throw new Exception ("Error en totalOrdinariosDepartamento");
 		}
@@ -177,12 +166,12 @@ public class LiquidacionService {
 	
 	public Double totalExtraordinariosDepartamento (String id_liquidacion) throws Exception{
 		try {
-		Usuario usuario = usuarioService.getUserByLogin();
-		Departamento departamento = departamentoRepository.buscarPorUsuario(usuario.getId());
-		
-		Double totalExtraordinariosDepartamento = (liquidacionRepository.totalExtraordinarios(id_liquidacion)/100)*departamento.getPorcentajeParticipacion();
-		
-		return totalExtraordinariosDepartamento;
+			Usuario usuario = usuarioService.getUserByLogin();
+			Departamento departamento = departamentoRepository.buscarPorUsuario(usuario.getId());
+			
+			Double totalExtraordinariosDepartamento = (liquidacionRepository.totalExtraordinarios(id_liquidacion)/100)*departamento.getPorcentajeParticipacion();
+			
+			return totalExtraordinariosDepartamento;
 		} catch (Exception e) {
 			throw new Exception ("Error en totalExtraordinariosDepartamento");
 		}
@@ -190,14 +179,15 @@ public class LiquidacionService {
 	
 	@Transactional
 	public Liquidacion publicar (String id) throws Exception{
-	try {
-		Liquidacion liquidacion = liquidacionRepository.findById(id).get();
-		liquidacion.setPublicar(true);
-		liquidacionRepository.save(liquidacion);
-		return liquidacion;
-	} catch (Exception e) {
-		throw new Exception ("Error al publicar liquidación");
-	}	
-		
+		try {
+			Liquidacion liquidacion = liquidacionRepository.findById(id).get();
+
+			liquidacion.setPublicar(true);
+			
+			liquidacionRepository.save(liquidacion);			
+			return liquidacion;
+		} catch (Exception e) {
+			throw new Exception ("Error al publicar liquidación");
+		}			
 	}
 }

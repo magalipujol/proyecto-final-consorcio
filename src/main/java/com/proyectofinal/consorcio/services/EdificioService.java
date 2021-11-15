@@ -27,12 +27,10 @@ public class EdificioService {
 			edificio.setAlta(true);	
 			edificio.setAdministrador(usuarioService.getUserByLogin());			
 
-			edificioRepository.save(edificio);
-			
+			edificioRepository.save(edificio);			
 			return edificio;
 		} catch (Exception e) {
-			throw new Exception("Error al crearEdificio");
-		
+			throw new Exception("Error al crear edificio");		
 		}
 	}
 
@@ -40,12 +38,14 @@ public class EdificioService {
 	public Edificio modificar(Long id, String direccion) throws Exception{
 		try {
 			validar(direccion);
+
 			Edificio edificio = edificioRepository.findById(id).get();
 			edificio.setDireccion(direccion);
+
 			edificioRepository.save(edificio);
 			return edificio;
 		} catch (Exception e) {
-			throw new Exception ("Error en modificarEdificio");
+			throw new Exception ("Error en modificar edificio");
 		}
 	}
 
@@ -57,7 +57,6 @@ public class EdificioService {
 			edificio.setAlta(false);
 
 			edificioRepository.save(edificio);
-
 		} catch (Exception e) {
 			e.getMessage();
 			System.out.println("Error en dar de baja edificio");
@@ -86,12 +85,10 @@ public class EdificioService {
 	public void validar(String direccion) throws Exception {
 		try {
 			if (direccion == null || direccion.isEmpty()) {
-				throw new Exception("La direcci�n no puede estar vac�a");
+				throw new Exception("La dirección no puede estar vacía");
 			}
-
 		} catch (Exception e) {
 			e.getMessage();
 		}
 	}
-
 }

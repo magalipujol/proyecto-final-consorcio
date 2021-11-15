@@ -19,7 +19,6 @@ import com.proyectofinal.consorcio.services.UsuarioService;
 @Controller
 @RequestMapping("/departamentos")
 public class DepartamentoController {
-
 	@Autowired
 	private DepartamentoService departamentoService;
 	@Autowired
@@ -29,12 +28,13 @@ public class DepartamentoController {
 	public String modificar(@PathVariable String id, ModelMap model) throws Exception {
 		try {
 			Departamento departamento = departamentoService.buscarPorId(id);
+
 			model.addAttribute("departamento", departamento);
+
 			return "formAgregarDepartamento.html";
 		} catch (Exception e) {
 			throw new Exception("Error en controlador modificar departamento");
 		}
-
 	}
 
 	// PreAuthorize agregar
@@ -42,13 +42,14 @@ public class DepartamentoController {
 	public String darDeBaja(@PathVariable String id, ModelMap model) throws Exception {
 		try {
 			departamentoService.eliminar(id);
-			Departamento departamento = departamentoService.buscarPorId(id);
-			model.addAttribute("departamento", departamento);
+
+			Departamento departamento = departamentoService.buscarPorId(id);			
+			model.addAttribute("departamento", departamento);			
+
 			return "verEdificios.html";
 		} catch (Exception e) {
 			throw new Exception("Error en controlador darDeBaja departamento");
 		}
-
 	}
 
 	@PostMapping("/agregar")
@@ -58,22 +59,18 @@ public class DepartamentoController {
 		try {
 			if (id == null) {
 				Usuario usuario = usuarioService.crearUsuario(mail);
-				departamentoService.crear(piso, dpto, porcentajeParticipacion, id_edificio, usuario);
-				model.addAttribute("edificio", id_edificio);
-				List<Departamento> departamentos = departamentoService.listarActivos(id_edificio);
-				model.addAttribute("departamentos", departamentos);
-				return "formAgregarDepartamento.html";
+				departamentoService.crear(piso, dpto, porcentajeParticipacion, id_edificio, usuario);								
 			} else {
 				departamentoService.modificar(id, piso, dpto, porcentajeParticipacion);
-				List<Departamento> departamentos = departamentoService.listarActivos(id_edificio);
-				model.addAttribute("departamentos", departamentos);
-				return "formAgregarDepartamento.html";
 			}
 
+			List<Departamento> listaDepartamentos = departamentoService.listarActivos(id_edificio);
+			model.addAttribute("edificio", id_edificio);
+			model.addAttribute("departamentos", listaDepartamentos);
+
+			return "formAgregarDepartamento.html";
 		} catch (Exception e) {
 			throw new Exception("Error en controlador agregarDpto");
 		}
-
 	}
-
 }

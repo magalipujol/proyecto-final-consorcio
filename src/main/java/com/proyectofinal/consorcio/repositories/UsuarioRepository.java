@@ -6,8 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.proyectofinal.consorcio.entities.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, String> {
-	
+public interface UsuarioRepository extends JpaRepository<Usuario, String> {	
 	Usuario findByMail(String mail);
 	
 //	@Query("SELECT a from Administrador a WHERE a.email LIKE :email")

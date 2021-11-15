@@ -17,7 +17,6 @@ import com.proyectofinal.consorcio.repositories.LiquidacionRepository;
 
 @Service
 public class DepartamentoService {
-
 	@Autowired
 	private DepartamentoRepository departamentoRepository;
 	@Autowired
@@ -31,14 +30,13 @@ public class DepartamentoService {
 			validar(piso, dpto, porcentaje);
 			
 			Departamento departamento = new Departamento();
+
 			departamento.setPiso(piso);
 			departamento.setDpto(dpto);
-			departamento.setPorcentajeParticipacion(porcentaje);
-			
+			departamento.setPorcentajeParticipacion(porcentaje);			
 			departamento.setEdificio(edificioRepository.findById(id_edificio).get());
 			//Ver usuario (roles)
 			departamento.setUsuario(usuario);
-
 
 			departamentoRepository.save(departamento);
 		} catch (Exception e) {
@@ -51,7 +49,9 @@ public class DepartamentoService {
 	public void modificar(String id, Integer piso, String dpto, Double porcentaje) {
 		try {
 			validar(piso, dpto, porcentaje);
+
 			Departamento departamento = departamentoRepository.findById(id).get();
+
 			departamento.setPiso(piso);
 			departamento.setDpto(dpto);
 			departamento.setPorcentajeParticipacion(porcentaje);
@@ -69,16 +69,14 @@ public class DepartamentoService {
 		try {
 			Departamento departamento = departamentoRepository.findById(id).get();
 
-			departamento.setAlta(false);
-			
-			departamentoRepository.save(departamento);
+			departamento.setAlta(false);			
 
+			departamentoRepository.save(departamento);
 		} catch (Exception e) {
 			e.getMessage();
 			System.out.println("Error al eliminar departamento");
 		}
 	}
-
 	
 	@Transactional(readOnly = true)
 	public List<Departamento> listarActivos(Long id_edificio) throws Exception {
@@ -94,11 +92,10 @@ public class DepartamentoService {
 			Liquidacion liquidacion = liquidacionRepository.findById(id_liquidacion).get();
 			Edificio edificio = liquidacion.getEdificio();
 			
-			List<Departamento>departamentos = listarActivos(edificio.getId());
+			List<Departamento> listaDepartamentos = listarActivos(edificio.getId());
+			List<Double> totalesDepartamentos = new ArrayList<Double>();
 			
-			List <Double> totalesDepartamentos = new ArrayList<Double>();
-			
-			for (Departamento dpto : departamentos) {
+			for (Departamento dpto : listaDepartamentos) {
 				Double total = liquidacion.getTotal() / 100 * dpto.getPorcentajeParticipacion();
 				totalesDepartamentos.add(total);
 			}
@@ -106,8 +103,7 @@ public class DepartamentoService {
 			return totalesDepartamentos;
 		} catch (Exception e) {
 			throw new Exception ("Error en totalesDepartemtno");
-		}
-		
+		}		
 	}
 	
 	public Departamento buscarPorId (String id) throws Exception {
@@ -121,17 +117,11 @@ public class DepartamentoService {
 
 	public void validar(Integer piso, String dpto, Double porcentaje) throws Exception {
 		try {
-			//Validar piso
 			if (piso == null || dpto.equals(null) || porcentaje == null) {
 				throw new Exception("Este dato no puede ser nulo");
 			}
-
 		} catch (Exception e) {
 			e.getMessage();
 		}
 	}
-
-	
-	
-
 }

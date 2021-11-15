@@ -31,8 +31,10 @@ public class EdificioController {
     @GetMapping("/ver-liquidaciones/{id}")
     public String verLiquidaciones (@PathVariable Long id, ModelMap model) throws Exception {
     	try {
-			List<Liquidacion>liquidaciones = liquidacionService.listarLiquidacionesAdmin(id);
-			model.addAttribute("liquidaciones", liquidaciones);
+			List<Liquidacion> listaLiquidaciones = liquidacionService.listarLiquidacionesAdmin(id);
+
+			model.addAttribute("liquidaciones", listaLiquidaciones);
+
 			return "lista-liquidaciones.html";
 		} catch (Exception e) {
 			throw new Exception ("Error en controlador verLiquidaciones");
@@ -52,22 +54,23 @@ public class EdificioController {
     @PostMapping("/crearedificio")
     public String crear(@RequestParam(required = false) Long id, @RequestParam String direccion, ModelMap model) throws Exception{
 		try {
-			if (id==null) {
-				Edificio edificio = edificioService.crear(direccion);
-				model.addAttribute("edificio", edificio.getId());
-				List<Departamento>departamentos= departamentoService.listarActivos(edificio.getId());
-				model.addAttribute("departamentos", departamentos);
+			Edificio edificio;
+
+			if (id == null) {
+				edificio = edificioService.crear(direccion);				
 			} else {
-				Edificio edificio = edificioService.modificar(id, direccion);
-				model.addAttribute("edificio", edificio.getId());
-				List<Departamento>departamentos= departamentoService.listarActivos(edificio.getId());
-				model.addAttribute("departamentos", departamentos);
+				edificio = edificioService.modificar(id, direccion);
 			}
+
+			List<Departamento> listaDepartamentos = departamentoService.listarActivos(edificio.getId());
+
+			model.addAttribute("edificio", edificio.getId());
+			model.addAttribute("departamentos", listaDepartamentos);
+
 	        return "formAgregarDepartamento.html";
 		} catch (Exception e) {
-			throw new Exception ("Error en controlador edificio");
+			throw new Exception ("Error en controlador crear edificio");
 		}
-   
     }
     
     //Ver input hidden en caso de modificar
@@ -75,12 +78,13 @@ public class EdificioController {
     public String modificar (@PathVariable Long id, ModelMap model) throws Exception{
     	try {
 			Edificio edificio = edificioService.buscarPorId(id);
+
 			model.addAttribute("edificio", edificio);
+
 			return "formCrearEdificio.html";
 		} catch (Exception e) {
 			throw new Exception ("Error en controlador modificar edificio");
-		}
-    	
+		}    	
     }
     
     //PreAuthorize agregar    
@@ -88,13 +92,14 @@ public class EdificioController {
     public String darDeBaja (@PathVariable Long id, ModelMap model) throws Exception{
     	try {
 			Edificio edificio = edificioService.buscarPorId(id);
+
 			edificioService.darDeBaja(id);
+
 			model.addAttribute("edificio", edificio);
+
 			return "formCrearEdificio.html";
 		} catch (Exception e) {
 			throw new Exception ("Error en controlador darDeBaja edificio");
-		}
-    	
-    }
-    
+		}    	
+    }    
 }

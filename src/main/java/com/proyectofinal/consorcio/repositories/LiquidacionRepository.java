@@ -10,9 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.proyectofinal.consorcio.entities.Liquidacion;
 
 @Repository
-public interface LiquidacionRepository extends JpaRepository<Liquidacion, String>{
-
-	
+public interface LiquidacionRepository extends JpaRepository<Liquidacion, String>{	
 	@Query("SELECT l FROM Liquidacion l WHERE l.alta = true AND l.edificio.id = :id ORDER BY l.anio DESC")
 	public List<Liquidacion> listarLiquidacionesAdmin(@Param("id") Long id);
 	
@@ -29,7 +27,5 @@ public interface LiquidacionRepository extends JpaRepository<Liquidacion, String
 	public Double totalOrdinarios(@Param("id") String id);
 	
 	@Query("SELECT SUM(e.monto) FROM Egreso e WHERE e.alta = true AND e.liquidacion.id = :id AND e.tipoGasto LIKE 'EXTRAORDINARIO'")
-	public Double totalExtraordinarios(@Param("id") String id);
-	
-	
+	public Double totalExtraordinarios(@Param("id") String id);	
 }

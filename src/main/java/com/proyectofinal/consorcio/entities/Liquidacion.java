@@ -44,7 +44,6 @@ public class Liquidacion {
 	public void setMes(Meses mes) {
 		this.mes = mes;
 	}
-	
 
 	public Integer getAnio() {
 		return anio;
@@ -60,8 +59,7 @@ public class Liquidacion {
 
 	public void setEdificio(Edificio edificio) {
 		this.edificio = edificio;
-	}
-	
+	}	
 	
 	public Boolean getAlta() {
 		return alta;
@@ -102,7 +100,5 @@ public class Liquidacion {
 
 	public void setTotalExtraordinarios(Double totalExtraordinarios) {
 		this.totalExtraordinarios = totalExtraordinarios;
-	}
-	
-	
+	}	
 }

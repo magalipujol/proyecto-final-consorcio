@@ -55,7 +55,8 @@ public class UsuarioService implements UserDetailsService {
 	public Usuario crearUsuario(String mail) throws Exception{
 		try {
 			validar(mail);
-			Usuario usuario = new Usuario();
+
+			Usuario usuario = new Usuario();			
 			usuario.setMail(mail);
 			usuario.setPassword(encoder.encode("pepe"));
 
@@ -68,13 +69,12 @@ public class UsuarioService implements UserDetailsService {
 	
 	public void validar (String mail) throws Exception {
 		if (mail==null || mail.isEmpty() || mail.contains("  ")) {
-			throw new Exception ("Debe ingresar un mail v�lido");
+			throw new Exception ("Debe ingresar un mail válido");
 		} 
 		
 		//VER MANEJO DE ERRRORES:
 		if (usuarioRepository.findByMail(mail) != null) {
 			throw new Exception ("El mail ya existe");
-		}
-				
+		}				
 	}
 }

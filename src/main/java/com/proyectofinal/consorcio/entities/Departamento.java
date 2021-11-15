@@ -47,7 +47,6 @@ public class Departamento {
 		this.porcentajeParticipacion = porcentajeParticipacion;
 	}
 	
-
 	public Boolean getAlta() {
 		return alta;
 	}

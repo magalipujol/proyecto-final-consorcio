@@ -9,9 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.proyectofinal.consorcio.entities.Edificio;
 
 @Repository
-public interface EdificioRepository extends JpaRepository<Edificio, Long>{
-	
+public interface EdificioRepository extends JpaRepository<Edificio, Long>{	
 	@Query("SELECT e FROM Edificio e WHERE e.alta = true")
 	public List<Edificio> buscarActivos ();	
-
 }

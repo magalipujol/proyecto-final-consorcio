@@ -17,7 +17,6 @@ import com.proyectofinal.consorcio.services.LiquidacionService;
 @Controller
 @RequestMapping("/egresos")
 public class EgresoController {
-	
 	@Autowired
 	private LiquidacionService liquidacionService;
 	
@@ -26,21 +25,20 @@ public class EgresoController {
 	
 	//Vista solo para el admin	
 	@PostMapping("/guardar")
-	public String guardarEgresos (ModelMap model,@RequestParam String detalle,@RequestParam Double monto,
-			@RequestParam String tipoGasto,@RequestParam String id_liquidacion) throws Exception{
+	public String guardarEgresos (ModelMap model, @RequestParam String detalle, @RequestParam Double monto,
+			@RequestParam String tipoGasto, @RequestParam String id_liquidacion) throws Exception{
 		try {
-			Liquidacion liquidacion = liquidacionService.buscarPorId(id_liquidacion);
-			model.addAttribute("liquidacion", liquidacion);
-			List<Egreso> egresos = egresoService.listarActivosMes(id_liquidacion);
-			model.addAttribute("egresos", egresos);
 			egresoService.crear(detalle, monto, tipoGasto, id_liquidacion);
+
+			Liquidacion liquidacion = liquidacionService.buscarPorId(id_liquidacion);
+			List<Egreso> listaEgresos = egresoService.listarActivosMes(id_liquidacion);
+
+			model.addAttribute("egresos", listaEgresos);
+			model.addAttribute("liquidacion", liquidacion);			
 			
 			return "formSubirExpensas.html";
 		} catch (Exception e) {
 			throw new Exception ("Error en controlador guardarEgresos");
-		}
-	
-	}
-	
-	
+		}	
+	}	
 }

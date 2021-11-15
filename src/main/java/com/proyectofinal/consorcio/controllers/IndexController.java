@@ -64,28 +64,25 @@ public class IndexController {
     	try {
     		if (request.isUserInRole("ADMIN")) {
         		String mail = usuarioService.getUserByLogin().getMail();
-        		model.addAttribute("mail", mail);
-        		
-        		List<Edificio> edificios = edificioService.listarActivos();
-        		
-        		model.addAttribute("edificios", edificios);
+        		List<Edificio> listaEdificios = edificioService.listarActivos();
+
+        		model.addAttribute("mail", mail);        	        		
+        		model.addAttribute("edificios", listaEdificios);
         		
         		return "verEdificios.html";
     		}
-        	if (request.isUserInRole("USER")) {
-        		
-        		String id_usuario = usuarioService.getUserByLogin().getId();
-        		
-        		List<Liquidacion> liquidaciones = liquidacionService.listarLiquidacionesUsuario(id_usuario);
+
+        	if (request.isUserInRole("USER")) {        		
+        		String id_usuario = usuarioService.getUserByLogin().getId();        		
+        		List<Liquidacion> listaLiquidaciones = liquidacionService.listarLiquidacionesUsuario(id_usuario);
         		      		
-        		model.addAttribute("liquidaciones", liquidaciones);
+        		model.addAttribute("liquidaciones", listaLiquidaciones);
         		
     			return "expensasVistaUsuario.html";
     		}
     		return "errors.html";
 		} catch (Exception e) {
 			throw new Exception ("Error en loginsuccess controller");
-		}
-    	
+		}    	
 	}
 }

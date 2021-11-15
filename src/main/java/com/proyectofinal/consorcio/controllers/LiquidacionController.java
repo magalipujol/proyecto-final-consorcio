@@ -21,7 +21,6 @@ import com.proyectofinal.consorcio.services.LiquidacionService;
 @Controller
 @RequestMapping("/liquidaciones")
 public class LiquidacionController {
-
 	@Autowired
 	private LiquidacionService liquidacionService;
 
@@ -35,8 +34,9 @@ public class LiquidacionController {
 	public String crearLiquidacion(ModelMap model,@PathVariable Long id_edificio) throws Exception {
 		try {
 			Edificio edificio = edificioService.buscarPorId(id_edificio);
+
 			model.addAttribute("edificio", edificio);
-			//<a class="btn btn-primary" th:href="@{./cargar/}+${edificio}" role="button">Cargar Liquidacion</a>
+
 			return "cargarMovimientos.html";
 		} catch (Exception e) {
 			throw new Exception("Error en controlador crearLiquidacion");
@@ -44,15 +44,14 @@ public class LiquidacionController {
 	}
 
 	@PostMapping("/guardar")
-	public String guardarLiquidacion(ModelMap model,@RequestParam String mes,
-			@RequestParam Integer anio,@RequestParam Long id_edificio) throws Exception {
-		
+	public String guardarLiquidacion(ModelMap model, @RequestParam String mes,
+			@RequestParam Integer anio, @RequestParam Long id_edificio) throws Exception {		
 		try {
 			Liquidacion liquidacion = liquidacionService.crear(mes, anio, id_edificio);
+
 			model.addAttribute("liquidacion", liquidacion);
 
 			return "formSubirExpensas.html";
-
 		} catch (Exception e) {
 			throw new Exception("Error en controlador guardarLiquidacion");
 		}
@@ -62,16 +61,14 @@ public class LiquidacionController {
 	public String liquidarExpensas(ModelMap model, String id) throws Exception{
 		try {
 			Double totalOrdinarios = liquidacionService.totalOrdinarios(id);
-			model.addAttribute("ordinarios", totalOrdinarios);
-			
 			Double totalExtraordinarios = liquidacionService.totalExtraordinarios(id);
-			model.addAttribute("extraordinarios", totalExtraordinarios);
-			
 			Double total = liquidacionService.total(id);
-			model.addAttribute("total", total);
-			
-			List<Egreso> egresos = egresoService.listarActivosMes(id);
-			model.addAttribute("egresos", egresos);
+			List<Egreso> listaEgresos = egresoService.listarActivosMes(id);
+
+			model.addAttribute("ordinarios", totalOrdinarios);			
+			model.addAttribute("extraordinarios", totalExtraordinarios);			
+			model.addAttribute("total", total);			
+			model.addAttribute("egresos", listaEgresos);
 			
 			liquidacionService.publicar(id);
 			
@@ -80,5 +77,4 @@ public class LiquidacionController {
 			throw new Exception ("Error en controlador liquidarExpensas");
 		}
 	}
-
 }

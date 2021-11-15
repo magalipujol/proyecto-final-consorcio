@@ -1,0 +1,27 @@
+:root {
+    --orange: #f69065;
+}
+.navbar {
+    background-color: var(--orange) !important;
+}
+
+.nav-link {
+    color: white !important;
+}
+.nav-link:hover {
+    color: var(--orange) !important;
+    background-color: white !important;
+    border-radius: 5px;
+}
+
+.navbar-brand {
+    color: white !important;
+    margin-left: 1%;
+}
+.navbar-brand:hover {
+    font-weight: 600;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}

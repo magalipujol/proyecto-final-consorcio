@@ -15,8 +15,8 @@ let app = Vue.createApp({
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">Volver <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="#">Log out</a>
+      <a class="nav-item nav-link active" href="#">VOLVER<span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="#">LOG OUT</a>
     </div>
   </div>
 </nav>

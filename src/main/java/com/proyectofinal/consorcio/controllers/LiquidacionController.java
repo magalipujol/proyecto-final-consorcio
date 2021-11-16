@@ -61,8 +61,8 @@ public class LiquidacionController {
 		}
 	}
 	
-	@PostMapping("/liquidar")
-	public String liquidarExpensas(ModelMap model, String id) throws Exception{
+	@PostMapping("/liquidar/")
+	public String liquidarExpensas(ModelMap model,@RequestParam String id) throws Exception{
 		try {
 			Double totalOrdinarios = liquidacionService.totalOrdinarios(id);
 			Double totalExtraordinarios = liquidacionService.totalExtraordinarios(id);
@@ -76,7 +76,7 @@ public class LiquidacionController {
 			
 			liquidacionService.publicar(id);
 			
-			return "ver-liquidacion.html";
+			return "expensasVistaAdmi.html";
 		} catch (Exception e) {
 			throw new Exception ("Error en controlador liquidarExpensas");
 		}

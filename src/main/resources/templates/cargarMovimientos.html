@@ -191,7 +191,10 @@
           </tr>
         </tbody>
       </table>
-      <button class="btn btn-secondary" type="submit">Liquidar</button>
+      <form th:if="${liquidacion} != null" th:action="@{/liquidaciones/liquidar/}" method="POST">
+        <input type="hidden" name="id" th:value="${liquidacion.id}">
+        <button class="btn btn-secondary" type="submit" >Liquidar</button>
+      </form>
       <button class="btn btn-secondary" type="submit">Volver</button>
     </div>
   </body>

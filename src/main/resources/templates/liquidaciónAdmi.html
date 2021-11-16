@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <navbar
+            :backBtn="false"
+            :backBtnRef="'verEdificios.html'"
+            class="navbar"
+          ></navbar>
+          <vistas></vistas>
+    
+      </div>
+      <!-- EGGPENSAS -->
+      <head>
+        <h1>Eggpensas</h1>
+      </head>
+    
+     <!-- EGGDINARIOS -->
+    
+        <div class="container">
+          <h2>Gastos Eggdinarios</h2>
+    
+          <div class="container h-100">
+            <div class="d-flex justify-content-center h-100">
+              <div class="searchbar">
+                <input class="search_input" type="text" name="" placeholder="Search...">
+                <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+              </div>
+            </div>
+          </div>
+    
+        </div>
+    
+    
+       <div class="container">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th> Periodo </th>
+              <th> Costo </th>
+              <th> Comprobante</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> Gas </td>
+              </td>
+              <td> 2525 </td>
+              </td>
+              <td> <button type="button" class="icono fas fa-angle-down"></button> </td>
+    
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    
+    
+    <!-- EGGTRAORDINARIOS -->
+    <form>
+      <div class="container">
+        <h2>Gastos Ordinarios</h2>
+        <label for="exampleInputTax">Buscar:</label>
+        <input type="text" class="form-control" placeholder="" required />
+      </div>
+    </form>
+    
+    <div class="container">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th> Categorias </th>
+            <th> Costo </th>
+            <th> Comprobante</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> Gas </td>
+            </td>
+            <td> 2525 </td>
+            </td>
+            <td> <button type="button" class="icono fas fa-angle-down"></button> </td>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+</body>
+</html>

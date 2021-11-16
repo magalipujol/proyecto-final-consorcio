@@ -25,3 +25,8 @@
 .navbar-nav {
     margin-left: auto;
 }
+
+.vistas {
+    background-color: #dbd9d7 !important;
+    color: rgb(73, 73, 73) !important;
+}

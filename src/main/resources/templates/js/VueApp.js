@@ -32,4 +32,26 @@ app.component("navbar", {
       `,
 });
 
+app.component("vistas", {
+template: /* html */ `
+<nav class="vistas navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="index.html">Index</a>
+      <a class="nav-item nav-link" href="login.html">Login</a>
+      <a class="nav-item nav-link" href="verEdificios.html">Ver edificos</a>
+      <a class="nav-item nav-link" href="expensasVistaAdmi.html">Expensas admin</a>
+      <a class="nav-item nav-link" href="formCrearEdificio.html">Crear edificio</a>
+      <a class="nav-item nav-link" href="cargarMovimientos.html">Cargar mov</a>
+      <a class="nav-item nav-link" href="expensasVistaUsuario.html">Expensas usuario</a>
+      <a class="nav-item nav-link" href="formAgregarDepto.html">Agregar depto</a>
+    </div>
+  </div>
+</nav>
+`
+})
+
 app.mount("#app");

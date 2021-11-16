@@ -35,8 +35,8 @@ public class EgresoController {
 
 			model.addAttribute("egresos", listaEgresos);
 			model.addAttribute("liquidacion", liquidacion);			
-			
-			return "formSubirExpensas.html";
+				
+			return "cargarMovimientos.html";
 		} catch (Exception e) {
 			throw new Exception ("Error en controlador guardarEgresos");
 		}	

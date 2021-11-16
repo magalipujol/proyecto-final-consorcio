@@ -31,6 +31,8 @@ public class LiquidacionService {
 	@Transactional
 	public Liquidacion crear (String mes, Integer anio, Long id_edificio) throws Exception{
 		try {
+			validar(mes, anio, id_edificio);
+			
 			Liquidacion liquidacion = new Liquidacion();
 
 			liquidacion.setMes(Meses.valueOf(mes));
@@ -189,5 +191,23 @@ public class LiquidacionService {
 		} catch (Exception e) {
 			throw new Exception ("Error al publicar liquidación");
 		}			
+	}
+	
+	public void validar (String mes, Integer anio, Long id_edificio) throws Exception{
+		try {
+			List<Liquidacion> liquidaciones = liquidacionRepository.listarLiquidacionesEdificio(id_edificio);
+
+			for (Liquidacion liq : liquidaciones) {
+
+				if (liq.getAnio().equals(anio) && liq.getMes().equals(Meses.valueOf(mes))) {
+					throw new Exception ("Ya existe una liquidación para este edificio y período");				
+				}
+			}
+
+		} catch (Exception e) {
+			throw new Exception ("Error al validar liquidacion");
+		}
+		
+		
 	}
 }

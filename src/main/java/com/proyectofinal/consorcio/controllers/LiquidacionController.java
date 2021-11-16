@@ -45,13 +45,17 @@ public class LiquidacionController {
 
 	@PostMapping("/guardar")
 	public String guardarLiquidacion(ModelMap model, @RequestParam String mes,
-			@RequestParam Integer anio, @RequestParam Long id_edificio) throws Exception {		
+			@RequestParam Integer yearpicker, @RequestParam Long id_edificio) throws Exception {		
 		try {
-			Liquidacion liquidacion = liquidacionService.crear(mes, anio, id_edificio);
+			Liquidacion liquidacion = liquidacionService.crear(mes, yearpicker, id_edificio);
 
 			model.addAttribute("liquidacion", liquidacion);
-
-			return "formSubirExpensas.html";
+			
+			Edificio edificio = edificioService.buscarPorId(id_edificio);
+			
+			model.addAttribute("edificio", edificio);
+			
+			return "cargarMovimientos.html";
 		} catch (Exception e) {
 			throw new Exception("Error en controlador guardarLiquidacion");
 		}

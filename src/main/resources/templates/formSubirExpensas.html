@@ -12,6 +12,8 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="css/navbar.css" />
+
   </head>
   <style>
     :root {
@@ -44,6 +46,13 @@
     }
   </style>
   <body>
+    <div id="app" v-cloaks>
+      <navbar
+        :backBtn="true"
+        :backBtnRef="'verEdificios.html'"
+        class="navbar"
+      ></navbar>
+    </div>
     <div class="container">
       <form>
         <div class="container" id="agregar-expensas-container">
@@ -105,5 +114,8 @@
         <small>IMPORTANTE Asegúrese de subir todos los departamentos</small>
       </form>
     </div>
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script src="js/VueApp.js"></script>
   </body>
 </html>

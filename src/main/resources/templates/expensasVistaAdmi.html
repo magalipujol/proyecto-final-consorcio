@@ -1,95 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/53584266fb.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/53584266fb.js"
+      crossorigin="anonymous"
+    ></script>
 
     <title>Eggdificio</title>
     <!-- Bootstrap Stylesheet -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
 
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/navbar.css">
-</head>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+  </head>
 
-
-<body>
-
-<div id="app" v-cloaks>
-    <navbar :backBtn="true" :backBtnRef="'verEdificios.html'" class="navbar"></navbar>
-    <vistas></vistas>
-
-</div>
+  <body>
+    <div id="app" v-cloaks>
+      <navbar
+        :backBtn="true"
+        :backBtnRef="'verEdificios.html'"
+        class="navbar"
+      ></navbar>
+      <vistas></vistas>
+    </div>
     <head>
-        <h1>Eggpensas</h1>
+      <h1>Eggpensas</h1>
     </head>
 
     <div class="container">
-        <div class="d-flex justify-content-center">
-            <div class="searchbar">
-                <input class="search_input" type="text" name="" placeholder="Search...">
-                <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-            </div>
+      <div class="d-flex justify-content-center">
+        <div class="searchbar">
+          <input
+            class="search_input"
+            type="text"
+            name=""
+            placeholder="Search..."
+          />
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
         </div>
+      </div>
     </div>
 
     <!-- LIQUIDACION  -->
+
     <div class="container">
-        <h2>LIQUIDACION</h2>
-        <div class="container">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th> Periodo </th>
-                        <th> Costo </th>
-                        <th> Ver</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td> Gas </td>
-                        <td> Agosto </td>
-                        <td> 234 </td>
-                        <td> <button type="button" class="icono fas fa-angle-down"></button> </td>
-                        <td> <button type="button" class="btn btn-light">Editar</button> </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+      <h2>LIQUIDACIONES</h2>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Periodo</th>
+            <th>Costo</th>
+            <th>Ver/modificar</th>
+            <th>Ver gastos por depto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Agosto</td>
+            <td>1312</td>
+            <!-- TODO agregar un if para que se muestre un botón o el otro -->
+            <td><button type="button" class="icono fas fa-edit"></button></td>
+            <!-- Este es el botón que se debería ver en la liquidaciones cerradas -->
+            <!-- <td> <button type="button" class="icono fas fa-eye"></button> </td> -->
+            <td>
+              <!-- El data target lleva al modal(id) de la liquidación que muestra -->
+              <button data-backdrop="false"
+                data-toggle="modal"
+                data-target="#deptoModal"
+                type="button"
+                class="icono fas fa-house-user"
+              ></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-        <div>
-            <h2>Gastos totales del periodo: 6536456 </h2>
+      <h3 id="periodo-actual">
+        Gastos totales del periodo actual: <span id="periodo-actual-numero">$ 1312</span>
+      </h3>
+    </div>
+    <!-- TODO el ID tiene que ser dinámico -->
+    <!-- Total gastos x depto -->
+    <div class="modal fade" id="deptoModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <h2>Gastos por departamento</h2>
+          <table class="table table-hover">
+              <thead>
+                  <tr>
+                      <th>departamento</th>
+                <th>Periodo</th>
+                <th>Total</th>
+                <th>% participación</th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr>
+                    <td>1 1</td>
+                <td>Agosto</td>
+                <td>234</td>
+                <td>10%</td>
+              </tr>
+            </tbody>
+        </table>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+    </div>
+</div>
+    </div>
 
-            <!-- Total gastos x depto -->
-    <div class="container">
-        <h2>Gastos por departamento</h2>
-        <div class="container">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th> departamento </th>
-                        <th> Periodo </th>
-                        <th> Total </th>
-                        <th> % participación</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td> 1 1 </td>
-                        <td> Agosto </td>
-                        <td> 234 </td>
-                        <td> 10% </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <script src="https://unpkg.com/vue@next"></script>
+    <!-- Vue.js -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="js/VueApp.js"></script>
 
-        <script src="js/VueApp.js"></script>
-</body>
-
+    <!-- Boostsrap js -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

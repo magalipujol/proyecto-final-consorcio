@@ -1,4 +1,4 @@
-:root { 
+:root {
 --orange: #f69065;
 }
 
@@ -70,5 +70,17 @@ thead {
     justify-content: left;
     color:var(--orange);
     border-radius: 50%;
-    
+
+    }
+
+    /* expensas vista admin */
+    #periodo-actual {
+      color: #000;
+    }
+
+    #periodo-actual-numero {
+      color: #fff;
+      background-color: var(--orange);
+      border-radius: 5%;
+      padding: 5px;
     }

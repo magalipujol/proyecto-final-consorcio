@@ -92,7 +92,7 @@
                   >Piso</label
                 >
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   name="piso"
                   id="exampleInputPassword1"
@@ -121,7 +121,7 @@
                   class="form-control"
                   name="mail"
                   id="exampleInputPassword1"
-                  placeholder="Ej. piso + unidad"
+                  placeholder=""
                   required
                 />
               </div>
@@ -134,7 +134,7 @@
                   name="porcentajeParticipacion"
                   class="form-control"
                   id="exampleInputPassword1"
-                  placeholder="Ej. piso + unidad"
+                  placeholder=""
                   required
                 />
               </div>
@@ -168,8 +168,11 @@
         </tr>
         </tbody>
     </table>
-    <button id="back-btn" class="btn btn-secondary">Volver</button>
+<!-- TODO Este botón está haciendo que se envíe el form, revisar -->
+    <button id="back-btn" class="btn btn-secondary"><a href="verEdificios.html"> Volver</a></button>
 </div>
+
+
 <script src="https://unpkg.com/vue@next"></script>
 
 <script src="js/VueApp.js"></script>

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +24,30 @@ public class EgresoController {
 	
 	@Autowired
 	private EgresoService egresoService;
+	
+	
+	@GetMapping("/ver/{id_liquidacion}")
+	public String verLiquidacion (ModelMap model,@PathVariable String id_liquidacion) throws Exception {
+		try {
+			Liquidacion liquidacion = liquidacionService.buscarPorId(id_liquidacion);
+			
+			model.addAttribute("liquidacion", liquidacion);
+			
+			List<Egreso> ordinarios = egresoService.listarOrdinariosMes(id_liquidacion);
+
+			model.addAttribute("ordinarios", ordinarios);
+			
+			List<Egreso> extraordinarios = egresoService.listarExtraordinariosMes(id_liquidacion);
+
+			model.addAttribute("extraordinarios", extraordinarios);
+
+			return "expensasVistaUsuario.html";
+		} catch (Exception e) {
+			throw new Exception("Error en controlador verLiquidacionesEdificio");
+		}
+	}
+	
+	
 	
 	//Vista solo para el admin	
 	@PostMapping("/guardar")

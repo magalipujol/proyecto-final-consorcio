@@ -11,18 +11,14 @@
 
 .footer-background {
     
-    background-image: url("../../static/img/white.png");
+    background-image: url("../../static/img/BUILDINGS.png");
     background-position: center center;
     background-repeat: repeat-x;
     background-size: auto 100%;
-    background-color: var(--orange); 
-    padding: 2.5rem 0;
-    color: var(--darkBlue);
-}
-
-.footer-content{
-    background-color: var(--orange);
-    color: white;
+    background-color:transparent; 
+    padding: 8rem 0 0.5rem 0;
+    color:var(--orange);
+    
 }
 
 html, body{

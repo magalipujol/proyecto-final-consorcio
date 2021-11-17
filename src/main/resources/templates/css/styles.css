@@ -4,6 +4,7 @@
 :root {
 --orange: #f69065;
 --darkBlue: #171F2A;
+--grey: #E6E6E6;
 
 }
 section.main-section{
@@ -37,7 +38,7 @@ body,html{
   width: 100%;
   margin: 0;
   padding: 0;
-  background:white !important;
+  background: var(--grey) !important;
   }
 
 .searchbar{

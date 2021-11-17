@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Shippori+Antique&display=swap');
 :root {
     --orange: #f69065;
 }
 .navbar {
-    background-color: var(--orange) !important;
-}
+    background-color: --d !important;
+    font-family: 'Shippori Antique', sans-serif;
 
 .nav-link:hover {
     color: var(--orange) !important;
@@ -14,6 +15,7 @@
 .navbar-brand {
     color: white !important;
     margin-left: 1%;
+    font-family: 'Shippori Antique', sans-serif;
 }
 .navbar-brand:hover {
     font-weight: 600;
@@ -21,6 +23,7 @@
 
 .navbar-nav {
     margin-left: auto;
+    
 }
 
 .vistas {

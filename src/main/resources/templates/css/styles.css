@@ -1,5 +1,6 @@
 @import url(./navbar.css);
 @import url(./footer.css);
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Shippori+Antique&display=swap');
 
 :root {
 --orange: #f69065;
@@ -17,6 +18,7 @@ thead {
 
 h1 {
   color: var(--orange);
+  font-family: 'Shippori Antique', sans-serif;
 }
 h2{
   color: var(--orange);

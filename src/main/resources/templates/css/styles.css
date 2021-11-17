@@ -29,10 +29,10 @@ h3 {
 }
 
 .icono {
-  background-color: #f4434500;
+  background-color: transparent;
   color: var(--orange);
   border: none;
-  border-radius: 20%;
+  
 }
 
 body,html{
@@ -47,13 +47,14 @@ body,html{
   margin-bottom: auto;
   margin-top: auto;
   height: 60px;
-  background-color: white;
+  background-color:transparent;
   border-radius: 30px;
-  padding: 10px;
+  padding: 9px;
+  color: var(--darkBlue);
   }
 
 .search_input{
-  color: var(--orange);
+  color: var(--darkBlue);
   border: 0;
   outline: 0;
   background: none;
@@ -61,26 +62,26 @@ body,html{
   caret-color:transparent;
   line-height: 40px;
   transition: width 0.4s linear;
+  font-family: 'Shippori Antique', sans-serif;
   }
 
 .searchbar:hover > .search_input{
   padding: 0 10px;
   width: 450px;
-  caret-color:red;
+  caret-color:var(--darkBlue);
   transition: width 0.4s linear;
   }
 
 .searchbar:hover {
-  background: white;
-  color:var(--orange);
+  color:var(--darkBlue);
   }
 
 .search_icon{
+  padding: 0em;
   float: right;
   justify-content: left;
-  color:var(--orange);
+  color:var(--darkBlue);
   border-radius: 50%;
-
   }
 
   /* expensas vista admin */

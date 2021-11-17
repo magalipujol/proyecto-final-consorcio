@@ -114,6 +114,15 @@ public class DepartamentoService {
 			throw new Exception ("Error en buscarPorId departamento");
 		}
 	}
+	
+	public Departamento buscarPorUsuario (String id_usuario) throws Exception {
+		try {
+			Departamento departamento = departamentoRepository.buscarPorUsuario(id_usuario);
+			return departamento;
+		} catch (Exception e) {
+			throw new Exception ("Error en buscar departamento por usuario");
+		}
+	}
 
 	public void validar(Integer piso, String dpto, Double porcentaje) throws Exception {
 		try {

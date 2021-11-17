@@ -82,6 +82,24 @@ public class EgresoService {
 		}
 	}
 	
+	@Transactional(readOnly = true)
+	public List<Egreso> listarExtraordinariosMes(String id_liquidacion) throws Exception {
+		try {			
+			return egresoRepository.buscarExtraordinarios(id_liquidacion);
+		} catch (Exception e) {
+			throw new Exception("Error al listar egresos extraordinarios");
+		}
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Egreso> listarOrdinariosMes(String id_liquidacion) throws Exception {
+		try {			
+			return egresoRepository.buscarOrdinarios(id_liquidacion);
+		} catch (Exception e) {
+			throw new Exception("Error al listar egresos ordinarios");
+		}
+	}
+	
 	public void validar(String detalle, Double monto, String tipoGasto, String id_liquidacion) throws Exception {
 		try {
 			//Validar egreso

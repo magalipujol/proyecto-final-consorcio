@@ -33,6 +33,8 @@ public class DepartamentoController {
 		try {
 			Liquidacion liquidacion = liquidacionService.buscarPorId(id_liquidacion);
 			
+			model.addAttribute("liquidacion", liquidacion);
+			
 			Long id_edificio = liquidacion.getEdificio().getId();
 			
 			List<Departamento> departamentos = departamentoService.listarActivos(id_edificio);

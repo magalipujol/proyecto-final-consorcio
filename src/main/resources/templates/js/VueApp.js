@@ -47,7 +47,7 @@ template: /* html */ `
       <a class="nav-item nav-link" href="formCrearEdificio.html">Crear edificio</a>
       <a class="nav-item nav-link" href="cargarMovimientos.html">Cargar mov</a>
       <a class="nav-item nav-link" href="expensasVistaUsuario.html">Expensas usuario</a>
-      <a class="nav-item nav-link" href="formAgregarDepto.html">Agregar depto</a>
+      <a class="nav-item nav-link" href="formAgregarDepartamento.html">Agregar depto</a>
     </div>
   </div>
 </nav>

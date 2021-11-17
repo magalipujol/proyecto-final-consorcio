@@ -13,26 +13,29 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/navbar.css">
 </head>
 
-
 <body>
-  <div id="app">
-    <navbar
-        :backBtn="false"
-        :backBtnRef="'verEdificios.html'"
-        class="navbar"
-      ></navbar>
+  <!-- NAVBAR -->
+  <div id="app" v-cloaks>
+    <navbar :backBtn="true" :backBtnRef="'verEdificios.html'" class="navbar"></navbar>
+    <vistas></vistas>
+  </div>
+
+  <!-- SECTION -->
+  <section class="main-section">
+    <div id="app">
+      <navbar :backBtn="false" :backBtnRef="'verEdificios.html'" class="navbar"></navbar>
       <vistas></vistas>
 
-  </div>
-  <!-- EGGPENSAS -->
-  <head>
-    <h1>Eggpensas</h1>
-  </head>
+    </div>
+    <!-- EGGPENSAS -->
 
- <!-- EGGDINARIOS -->
+    <head>
+      <h1>Eggpensas</h1>
+    </head>
+
+    <!-- EGGDINARIOS -->
 
     <div class="container">
       <h2>Gastos Ordinarios</h2>
@@ -49,63 +52,77 @@
     </div>
 
 
-   <div class="container">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th> Periodo </th>
-          <th> Costo </th>
-          <th> Comprobante</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td> Gas </td>
-          </td>
-          <td> 2525 </td>
-          </td>
-          <td> <button type="button" class="icono fas fa-angle-down"></button> </td>
+    <div class="container">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th> Periodo </th>
+            <th> Costo </th>
+            <th> Comprobante</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> Gas </td>
+            </td>
+            <td> 2525 </td>
+            </td>
+            <td> <button type="button" class="icono fas fa-angle-down"></button> </td>
 
-          </td>
-        </tr>
-      </tbody>
-    </table>
-</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
+    <!-- EGGTRAORDINARIOS -->
+    <form>
+      <div class="container">
+        <h2>Gastos Extraordinarios</h2>
+        <label for="exampleInputTax">Buscar:</label>
+        <input type="text" class="form-control" placeholder="" required />
+      </div>
+    </form>
 
-<!-- EGGTRAORDINARIOS -->
-<form>
-  <div class="container">
-    <h2>Gastos Extraordinarios</h2>
-    <label for="exampleInputTax">Buscar:</label>
-    <input type="text" class="form-control" placeholder="" required />
-  </div>
-</form>
+    <div class="container">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th> Categorias </th>
+            <th> Costo </th>
+            <th> Comprobante</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> Gas </td>
+            </td>
+            <td> 2525 </td>
+            </td>
+            <td> <button type="button" class="icono fas fa-angle-down"></button> </td>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-<div class="container">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th> Categorias </th>
-        <th> Costo </th>
-        <th> Comprobante</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td> Gas </td>
-        </td>
-        <td> 2525 </td>
-        </td>
-        <td> <button type="button" class="icono fas fa-angle-down"></button> </td>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="js/VueApp.js"></script>
+  </section>
 
-<script src="https://unpkg.com/vue@next"></script>
-
-<script src="js/VueApp.js"></script>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-background">
+    </div>
+    <div class="footer-content">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center">
+            <p class="h6">© All right Reversed. Eggdificio</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

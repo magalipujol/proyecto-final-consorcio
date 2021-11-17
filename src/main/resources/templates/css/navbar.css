@@ -5,8 +5,6 @@
     background-color: var(--orange) !important;
 }
 
-.nav-link {
-    color: white !important;
 }
 .nav-link:hover {
     color: var(--orange) !important;

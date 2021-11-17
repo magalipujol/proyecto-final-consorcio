@@ -12,40 +12,23 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="css/navbar.css" />
+    <link rel="stylesheet" href="css/styles.css" />
 
   </head>
-  <style>
-    :root {
-      --orange: #f69065;
-    }
-    #agregar-expensas-container {
-      background-color: var(--orange);
-      margin-top: 2rem;
-      color: white;
-      font-weight: 600;
-    }
-    .btn-primary {
-      background-color: var(--orange);
-      border: none;
-      margin-top: 0.5rem;
-    }
 
-    .btn-secondary {
-      background-color: white;
-      border: none;
-      margin-top: 0.5rem;
-      color: var(--orange);
-      font-weight: 600;
-    }
-
-    .btn-secondary:hover {
-      background-color: var(--orange);
-      border: none;
-      margin-top: 0.5rem;
-    }
-  </style>
   <body>
+    <!-- NAVBAR -->
+    <div id="app" v-cloaks>
+      <navbar
+        :backBtn="true"
+        :backBtnRef="'verEdificios.html'"
+        class="navbar"
+      ></navbar>
+      <vistas></vistas>
+    </div>
+
+    <!-- SECTION -->
+    <section class="main-section">
     <div id="app" v-cloaks>
       <navbar
         :backBtn="true"
@@ -119,5 +102,21 @@
     <script src="https://unpkg.com/vue@next"></script>
 
     <script src="js/VueApp.js"></script>
+
+  </section>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-background">	
+    </div>
+    <div class="footer-content"> 
+      <div class="container">		
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center">
+            <p class="h6">© All right Reversed. Eggdificio</a></p>
+          </div>	
+        </div>
+      </div>	
+    </div>	
+  </footer>
   </body>
 </html>

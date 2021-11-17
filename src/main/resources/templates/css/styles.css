@@ -1,88 +1,135 @@
+@import url(./navbar.css);
+@import url(./footer.css);
+
 :root {
 --orange: #f69065;
 --darkBlue: #171F2A;
 
 }
-
+section.main-section{
+  min-height: calc(100vh - 115px - 56px);
+}
 thead {
-    background:var(--orange);
-    color: white;
+  background:var(--orange);
+  color: white;
+}
+
+h1 {
+  color: var(--orange);
+}
+h2{
+  color: var(--orange);
+}
+h3 {
+  color: var(--orange);
+  font-size: medium;
+}
+
+.icono {
+  background-color: #f4434500;
+  color: var(--orange);
+  border: none;
+  border-radius: 20%;
+}
+
+body,html{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background:white !important;
   }
 
-  h1 {
-    color: var(--orange);
-  }
-  h2{
-    color: var(--orange);
-  }
-  h3 {
-    color: var(--orange);
-    font-size: medium;
+.searchbar{
+  margin-bottom: auto;
+  margin-top: auto;
+  height: 60px;
+  background-color: white;
+  border-radius: 30px;
+  padding: 10px;
   }
 
-  .icono {
-    background-color: #f4434500;
-    color: var(--orange);
-    border: none;
-    border-radius: 20%;
+.search_input{
+  color: var(--orange);
+  border: 0;
+  outline: 0;
+  background: none;
+  width: 0;
+  caret-color:transparent;
+  line-height: 40px;
+  transition: width 0.4s linear;
   }
 
-  body,html{
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background:white !important;
-    }
+.searchbar:hover > .search_input{
+  padding: 0 10px;
+  width: 450px;
+  caret-color:red;
+  transition: width 0.4s linear;
+  }
 
-    .searchbar{
-    margin-bottom: auto;
-    margin-top: auto;
-    height: 60px;
-    background-color: white;
-    border-radius: 30px;
-    padding: 10px;
-    }
+.searchbar:hover {
+  background: white;
+  color:var(--orange);
+  }
 
-    .search_input{
-    color: var(--orange);
-    border: 0;
-    outline: 0;
-    background: none;
-    width: 0;
-    caret-color:transparent;
-    line-height: 40px;
-    transition: width 0.4s linear;
-    }
+.search_icon{
+  float: right;
+  justify-content: left;
+  color:var(--orange);
+  border-radius: 50%;
 
-    .searchbar:hover > .search_input{
-    padding: 0 10px;
-    width: 450px;
-    caret-color:red;
-    transition: width 0.4s linear;
-    }
+  }
 
-    .searchbar:hover {
-    background: white;
-    color:var(--orange);
-    }
+  /* expensas vista admin */
+#periodo-actual {
+  color: #000;
+}
 
-    .search_icon{
-    float: right;
-    justify-content: left;
-    color:var(--orange);
-    border-radius: 50%;
+#periodo-actual-numero {
+  color: #fff;
+  background-color: var(--orange);
+  border-radius: 5%;
+  padding: 5px;
+}
 
-    }
+/* COPIE ACA EL STYLE DE AGREGAR DEPTO */
+#agregar-deptos-container {
+  background-color: var(--orange);
+  margin-top: 2rem;
+  color: white;
+  font-weight: 600;
+}
+.btn-primary {
+  background-color: var(--orange);
+  border: none;
+  margin-top: 0.5rem;
+}
 
-    /* expensas vista admin */
-    #periodo-actual {
-      color: #000;
-    }
 
-    #periodo-actual-numero {
-      color: #fff;
-      background-color: var(--orange);
-      border-radius: 5%;
-      padding: 5px;
-    }
+.btn-secondary {
+  background-color: white;
+  border: none;
+  margin-top: 0.5rem;
+  color: var(--orange);
+  font-weight: 600;
+}
+
+.btn-secondary:hover {
+  background-color: var(--orange);
+  border: none;
+  margin-top: 0.5rem;
+}
+
+.btn-icon {
+  background-color: white;
+  border: none;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+.btn-icon:hover {
+  color: var(--orange);
+  border: none;
+  margin-top: 0.5rem;
+}
+
+  

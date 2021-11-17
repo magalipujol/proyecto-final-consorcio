@@ -47,7 +47,7 @@
     }
     .btn-secondary:hover {
       background-color: var(--orange);
-      color: white;
+      color: white !important;
     }
     a {
       color: var(--orange);
@@ -62,6 +62,9 @@
       margin: 0.5rem 0 0.5rem 0;
       color: var(--orange);
     }
+    #login-btn:hover {
+      color: white
+    }
   </style>
   <body>
       <div class="jumbotron">
@@ -74,7 +77,8 @@
             >acá</a
           >
         </p>
-        <div class="btn btn-secondary">LOG IN</div>
+        <button class="btn btn-secondary"><a id="login-btn" th:href="@{/login}"
+          >LOG IN</a></button>
       </div>
   </body>
 </html>

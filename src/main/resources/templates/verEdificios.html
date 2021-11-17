@@ -60,10 +60,13 @@
          de cada edificio, donde se pueden editar y esas cosillas -->
     <div class="container">
       <div class="btn">
-        <div class="card" style="width: 18rem">
+        <div th:each="edificio : ${edificios}" class="card" style="width: 18rem">
           <div class="card-body">
-            <h5 class="card-title nombre-edificio">Edificio Pirulo</h5>
-            <p class="card-text direccion">p sherman calle wallaby 42 sidney</p>
+            <a th:href="@{/liquidaciones/ver-lista/}+${edificio.id}">
+              <h5 class="card-title nombre-edificio" th:text="${edificio.direccion}"></h5>
+            </a>
+            
+            <!--<p class="card-text direccion">p sherman calle wallaby 42 sidney</p>-->
           </div>
         </div>
       </div>

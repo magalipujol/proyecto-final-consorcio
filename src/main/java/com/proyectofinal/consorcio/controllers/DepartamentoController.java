@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.proyectofinal.consorcio.entities.Departamento;
+import com.proyectofinal.consorcio.entities.Liquidacion;
 import com.proyectofinal.consorcio.entities.Usuario;
 import com.proyectofinal.consorcio.services.DepartamentoService;
+import com.proyectofinal.consorcio.services.LiquidacionService;
 import com.proyectofinal.consorcio.services.UsuarioService;
 
 @Controller
@@ -23,7 +25,31 @@ public class DepartamentoController {
 	private DepartamentoService departamentoService;
 	@Autowired
 	private UsuarioService usuarioService;
+	@Autowired
+	private LiquidacionService liquidacionService;
 
+	@GetMapping("/ver/{id_liquidacion}")
+	public String verTotalesPorDepto (@PathVariable String id_liquidacion, ModelMap model) throws Exception {
+		try {
+			Liquidacion liquidacion = liquidacionService.buscarPorId(id_liquidacion);
+			
+			Long id_edificio = liquidacion.getEdificio().getId();
+			
+			List<Departamento> departamentos = departamentoService.listarActivos(id_edificio);
+
+			model.addAttribute("departamentos", departamentos);
+			
+			List<Double> totalesDpto = departamentoService.totalesDepartamentos(id_liquidacion);
+			
+			model.addAttribute("totalesDpto", totalesDpto);
+			
+			//Modal o vista nueva para ver totales por depto
+			return "totalePorDepto.html";
+		} catch (Exception e) {
+			throw new Exception("Error en controlador modificar departamento");
+		}
+	}
+	
 	@GetMapping("/modificar/{id}")
 	public String modificar(@PathVariable String id, ModelMap model) throws Exception {
 		try {

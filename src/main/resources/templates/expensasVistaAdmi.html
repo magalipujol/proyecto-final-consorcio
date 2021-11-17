@@ -58,17 +58,23 @@
         <thead>
           <tr>
             <th>Periodo</th>
-            <th>Costo</th>
+            <th>Monto</th>
             <th>Ver/modificar</th>
             <th>Ver gastos por depto</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Agosto</td>
-            <td>1312</td>
+          <tr th:each="liquidacion : ${liquidaciones}"          >
+            <td th:text="${liquidacion.mes}"></td>
+            <td >
+              <span th:if="${liquidacion.publicar == true}" th:text="${liquidacion.total}"></span>
+              <span th:unless="${liquidacion.publicar == true}">-</span>
+            </td>
             <!-- TODO agregar un if para que se muestre un botón o el otro -->
-            <td><button type="button" class="icono fas fa-edit"></button></td>
+            <td>
+              <span th:if="${liquidacion.publicar == true}"><a type="button" th:href="@{/liquidaciones/ver/}+${liquidacion.id}" class="icono fas fa-eye"></a></span>
+              <span th:unless="${liquidacion.publicar == true}"><a type="button" th:href="@{/liquidaciones/modificar/}+${liquidacion.id}" class="icono fas fa-edit"></a></span>
+            </td>
             <!-- Este es el botón que se debería ver en la liquidaciones cerradas -->
             <!-- <td> <button type="button" class="icono fas fa-eye"></button> </td> -->
             <td>

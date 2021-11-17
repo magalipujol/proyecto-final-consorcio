@@ -24,14 +24,6 @@
   </head>
 
   <body>
-    <!-- NAVBAR -->
-  <div id="app" v-cloaks>
-    <navbar :backBtn="true" :backBtnRef="'verEdificios.html'" class="navbar"></navbar>
-    <vistas></vistas>
-  </div>
-
-  <!-- SECTION -->
-  <section class="main-section">
     <div id="app" v-cloaks>
       <navbar
         :backBtn="true"
@@ -58,48 +50,34 @@
       </div>
     </div>
 
-    <!-- LIQUIDACION  -->
+    <!-- EGRESOS  -->
+
     <div class="container">
-      <h2>LIQUIDACIONES</h2>
+      <h2>EGRESOS</h2>
       <table class="table table-hover">
         <thead>
           <tr>
             <th>Periodo</th>
-            <th>Monto</th>
-            <th>Ver/modificar</th>
-            <th>Ver gastos por depto</th>
+            <th>Departamento</th>
+            <th>Total</th>
+            <th>Monto a pagar</th>
           </tr>
         </thead>
         <tbody>
-          <tr th:each="liquidacion : ${liquidaciones}"          >
+          <tr th:each="egreso : ${egreso}"          >
             <td th:text="${liquidacion.mes}"></td>
-            <td >
-              <span th:if="${liquidacion.publicar == true}" th:text="${liquidacion.total}"></span>
-              <span th:unless="${liquidacion.publicar == true}">-</span>
+	<td th:text="departamento.id"></td>
+            
+           
+            <td>TOTAL
             </td>
-            <!-- TODO agregar un if para que se muestre un botón o el otro -->
-            <td>
-              <span th:if="${liquidacion.publicar == true}"><a type="button" th:href="@{/liquidaciones/ver/}+${liquidacion.id}" class="icono fas fa-eye"></a></span>
-              <span th:unless="${liquidacion.publicar == true}"><a type="button" th:href="@{/liquidaciones/modificar/}+${liquidacion.id}" class="icono fas fa-edit"></a></span>
-            </td>
-            <!-- Este es el botón que se debería ver en la liquidaciones cerradas -->
-            <!-- <td> <button type="button" class="icono fas fa-eye"></button> </td> -->
-            <td>
-              <!-- El data target lleva al modal(id) de la liquidación que muestra -->
-              <button data-backdrop="false"
-                data-toggle="modal"
-                data-target="#deptoModal"
-                type="button"
-                class="icono fas fa-house-user"
-              ></button>
+<td>Porcentaje a pagar
             </td>
           </tr>
         </tbody>
       </table>
 
-      <h3 id="periodo-actual">
-        Gastos totales del periodo actual: <span id="periodo-actual-numero">$ 1312</span>
-      </h3>
+      
     </div>
     <!-- TODO el ID tiene que ser dinámico -->
     <!-- Total gastos x depto -->
@@ -127,7 +105,7 @@
         </table>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
+          </div>-->
     </div>
 </div>
     </div>
@@ -152,20 +130,5 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-  </section>
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-background">
-    </div>
-    <div class="footer-content">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center">
-            <p class="h6">© All right Reversed. Eggdificio</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
   </body>
 </html>

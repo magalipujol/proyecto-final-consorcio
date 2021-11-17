@@ -42,6 +42,54 @@ public class LiquidacionController {
 			throw new Exception("Error en controlador crearLiquidacion");
 		}
 	}
+	
+	 @GetMapping("/modificar/{id}")
+	    public String modificar (@PathVariable String id, ModelMap model) throws Exception{
+	    	try {
+				Liquidacion liquidacion = liquidacionService.buscarPorId(id);
+
+				model.addAttribute("liquidacion", liquidacion);
+				
+				List<Egreso> egresos = egresoService.listarActivosMes(id);
+				
+				model.addAttribute("egresos", egresos);
+				
+				return "cargarMovimientos.html";
+			} catch (Exception e) {
+				throw new Exception ("Error en controlador modificar liquidacion");
+			}    	
+	    }
+	
+	@GetMapping("/ver-lista/{id_edificio}")
+	public String verLiquidacionesEdificio (ModelMap model,@PathVariable Long id_edificio) throws Exception {
+		try {
+			List<Liquidacion> liquidaciones = liquidacionService.listarLiquidacionesAdmin(id_edificio);
+
+			model.addAttribute("liquidaciones", liquidaciones);
+
+			return "expensasVistaAdmi.html";
+		} catch (Exception e) {
+			throw new Exception("Error en controlador verLiquidacionesEdificio");
+		}
+	}
+	
+	@GetMapping("/ver/{id}")
+	public String verLiquidacion (ModelMap model,@PathVariable String id) throws Exception {
+		try {
+			Liquidacion liquidacion = liquidacionService.buscarPorId(id);
+			
+			model.addAttribute("liquidacion", liquidacion);
+			
+			List<Egreso> egresos = egresoService.listarActivosMes(id);
+
+			model.addAttribute("egresos", egresos);
+			
+			//Retorna vista de una liquidacion
+			return "expensasVistaAdmi.html";
+		} catch (Exception e) {
+			throw new Exception("Error en controlador verLiquidacion");
+		}
+	}
 
 	@PostMapping("/guardar")
 	public String guardarLiquidacion(ModelMap model, @RequestParam String mes,

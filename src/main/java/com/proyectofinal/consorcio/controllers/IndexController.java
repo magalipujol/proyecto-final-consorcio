@@ -78,7 +78,7 @@ public class IndexController {
         		      		
         		model.addAttribute("liquidaciones", listaLiquidaciones);
         		
-    			return "expensasVistaUsuario.html";
+    			return "expensasVistaAdmi.html";
     		}
     		return "errors.html";
 		} catch (Exception e) {

@@ -46,7 +46,7 @@ public class DepartamentoController {
 			model.addAttribute("totalesDpto", totalesDpto);
 			
 			//Modal o vista nueva para ver totales por depto
-			return "totalePorDepto.html";
+			return "totalesdpto.html";
 		} catch (Exception e) {
 			throw new Exception("Error en controlador modificar departamento");
 		}

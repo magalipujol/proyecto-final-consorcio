@@ -96,6 +96,14 @@ public class LiquidacionController {
 			
 			model.addAttribute("departamento", departamento);
 			
+			List<Egreso> ordinarios = egresoService.listarOrdinariosMes(id);
+
+			model.addAttribute("ordinarios", ordinarios);
+			
+			List<Egreso> extraordinarios = egresoService.listarExtraordinariosMes(id);
+
+			model.addAttribute("extraordinarios", extraordinarios);
+			
 			List<Egreso> egresos = egresoService.listarActivosMes(id);
 
 			model.addAttribute("egresos", egresos);

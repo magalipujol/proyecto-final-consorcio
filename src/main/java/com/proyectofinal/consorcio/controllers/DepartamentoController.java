@@ -3,6 +3,7 @@ package com.proyectofinal.consorcio.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,8 @@ public class DepartamentoController {
 	private UsuarioService usuarioService;
 	@Autowired
 	private LiquidacionService liquidacionService;
-
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/ver/{id_liquidacion}")
 	public String verTotalesPorDepto (@PathVariable String id_liquidacion, ModelMap model) throws Exception {
 		try {
@@ -45,13 +47,13 @@ public class DepartamentoController {
 			
 			model.addAttribute("totalesDpto", totalesDpto);
 			
-			//Modal o vista nueva para ver totales por depto
 			return "totalesdpto.html";
 		} catch (Exception e) {
 			throw new Exception("Error en controlador modificar departamento");
 		}
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/modificar/{id}")
 	public String modificar(@PathVariable String id, ModelMap model) throws Exception {
 		try {
@@ -65,7 +67,7 @@ public class DepartamentoController {
 		}
 	}
 
-	// PreAuthorize agregar
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/eliminar/{id}")
 	public String darDeBaja(@PathVariable String id, ModelMap model) throws Exception {
 		try {
@@ -79,7 +81,8 @@ public class DepartamentoController {
 			throw new Exception("Error en controlador darDeBaja departamento");
 		}
 	}
-
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/agregar")
 	public String agregarDpto(@RequestParam(required = false) String id, @RequestParam Integer piso,
 			@RequestParam String dpto, @RequestParam Double porcentajeParticipacion, @RequestParam String mail,

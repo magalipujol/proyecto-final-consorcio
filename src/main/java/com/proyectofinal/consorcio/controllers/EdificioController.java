@@ -1,8 +1,9 @@
-package com.proyectofinal.consorcio.controllers;
+	package com.proyectofinal.consorcio.controllers;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +33,7 @@ public class EdificioController {
     private UsuarioService usuarioService;
     
     
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/ver")
     public String verEdificios (ModelMap model) throws Exception {
     	try {
@@ -48,6 +49,7 @@ public class EdificioController {
 		}
     }
 	
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/ver-liquidaciones/{id}")
     public String verLiquidaciones (@PathVariable Long id, ModelMap model) throws Exception {
     	try {
@@ -61,6 +63,7 @@ public class EdificioController {
 		}
     }
     
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/crearedificio")
     public String crearEdificio() throws Exception {
     	try {
@@ -70,7 +73,7 @@ public class EdificioController {
 		}
     }
     
-    //Ver front para que llegue el id_edificio
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/crearedificio")
     public String crear(@RequestParam(required = false) Long id, @RequestParam String direccion, ModelMap model) throws Exception{
 		try {
@@ -93,7 +96,7 @@ public class EdificioController {
 		}
     }
     
-    //Ver input hidden en caso de modificar
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/modificar/{id}")
     public String modificar (@PathVariable Long id, ModelMap model) throws Exception{
     	try {
@@ -107,7 +110,7 @@ public class EdificioController {
 		}    	
     }
     
-    //PreAuthorize agregar    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/eliminar/{id}")
     public String darDeBaja (@PathVariable Long id, ModelMap model) throws Exception{
     	try {

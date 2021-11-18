@@ -66,6 +66,22 @@ public class UsuarioService implements UserDetailsService {
 			throw new Exception ("Error al crearUsuario");
 		}	
 	}
+    
+    public Usuario cambiarContrasenia (String contraseniaNueva1, String contraseniaNueva2) throws Exception {
+    	try {
+    		Usuario usuario = getUserByLogin();
+    		
+			if (contraseniaNueva1.equals(contraseniaNueva2)) {
+				usuario.setPassword(encoder.encode(contraseniaNueva1));
+				
+				usuarioRepository.save(usuario);
+			}
+			return usuario;
+		} catch (Exception e) {
+			throw new Exception ("Error al cambiar contraseña");
+		}
+    	
+    }
 	
 	public void validar (String mail) throws Exception {
 		if (mail==null || mail.isEmpty() || mail.contains("  ")) {

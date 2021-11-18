@@ -25,6 +25,28 @@ public class EgresoController {
 	@Autowired
 	private EgresoService egresoService;
 	
+	@GetMapping("/eliminar/{id}")
+    public String eliminar (@PathVariable String id, ModelMap model) throws Exception{
+    	try {
+			egresoService.eliminar(id);
+			
+			Egreso egreso = egresoService.buscarPorId(id);
+			
+			model.addAttribute("egreso", egreso);
+			
+			Liquidacion liquidacion = egreso.getLiquidacion();
+			
+			model.addAttribute("liquidacion", liquidacion);	
+			
+			List<Egreso> egresos = egresoService.listarActivosMes(liquidacion.getId());
+			
+			model.addAttribute("egresos", egresos);
+			
+			return "cargarMovimientos.html";
+		} catch (Exception e) {
+			throw new Exception ("Error en controlador modificar liquidacion");
+		}    	
+    }
 	
 	@GetMapping("/ver/{id_liquidacion}")
 	public String verLiquidacion (ModelMap model,@PathVariable String id_liquidacion) throws Exception {

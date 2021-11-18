@@ -136,19 +136,19 @@ public class LiquidacionController {
 	@PostMapping("/liquidar/")
 	public String liquidarExpensas(ModelMap model,@RequestParam String id) throws Exception{
 		try {
-			Double totalOrdinarios = liquidacionService.totalOrdinarios(id);
-			Double totalExtraordinarios = liquidacionService.totalExtraordinarios(id);
-			Double total = liquidacionService.total(id);
-			List<Egreso> listaEgresos = egresoService.listarActivosMes(id);
-
-			model.addAttribute("ordinarios", totalOrdinarios);			
-			model.addAttribute("extraordinarios", totalExtraordinarios);			
-			model.addAttribute("total", total);			
-			model.addAttribute("egresos", listaEgresos);
+			List<Egreso> ordinarios = egresoService.listarOrdinariosMes(id);
+			List<Egreso> extraordinarios = egresoService.listarExtraordinariosMes(id);
+					
+			model.addAttribute("ordinarios", ordinarios);			
+			model.addAttribute("extraordinarios", extraordinarios);			
 			
 			liquidacionService.publicar(id);
 			
-			return "expensasVistaAdmi.html";
+			Liquidacion liquidacion = liquidacionService.buscarPorId(id);
+			
+			model.addAttribute("liquidacion", liquidacion);
+			
+			return "expensasVistaUsuario.html";
 		} catch (Exception e) {
 			throw new Exception ("Error en controlador liquidarExpensas");
 		}

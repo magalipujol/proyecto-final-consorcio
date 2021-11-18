@@ -100,6 +100,16 @@ public class EgresoService {
 		}
 	}
 	
+	@Transactional
+	public Egreso buscarPorId (String id) throws Exception {
+		try {
+			Egreso egreso = egresoRepository.findById(id).get();
+			return egreso;
+		} catch (Exception e) {
+			throw new Exception ("Error al buscar egreso por id");
+		}
+	}
+	
 	public void validar(String detalle, Double monto, String tipoGasto, String id_liquidacion) throws Exception {
 		try {
 			//Validar egreso

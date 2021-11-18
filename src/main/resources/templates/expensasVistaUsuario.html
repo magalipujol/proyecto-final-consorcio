@@ -63,11 +63,11 @@
         <tbody>
           <tr th:each="egresos : ${ordinarios}">
             <td th:text="${egresos.detalle}"></td>
-            <td th:text="${egresos.monto}"></td>  
+            <td th:text="'$' + ${egresos.monto}"></td>  
           </tr>
         </tbody>
       </table>
-      <h5 th:text="'Total Ordinario: '+${liquidacion.totalOrdinarios}"></h5>
+      <h5 th:text="'Total Ordinario: $'+ ${liquidacion.totalOrdinarios}"></h5>
       <hr/>
     </div>
     
@@ -83,20 +83,20 @@
         <tbody>
           <tr th:each="egresos : ${extraordinarios}">
             <td th:text="${egresos.detalle}"></td>
-            <td th:text="${egresos.monto}"></td> 
+            <td th:text="'$' + ${egresos.monto}"></td> 
             </tr>
         </tbody>
       </table>
-      <h5 th:text="'Total Extraordinario: '+ ${liquidacion.totalExtraordinarios}"></h5>
+      <h5 th:text="'Total Extraordinario: $'+ ${liquidacion.totalExtraordinarios}"></h5>
       <hr/>
     </div>
 
     <div class="container">
-      <h5 th:text="'Total: '+ ${liquidacion.total}"></h5> 
+      <h5 th:text="'Total: $'+ ${liquidacion.total}"></h5> 
     </div>
 
     <div class="container" sec:authorize="hasRole('ROLE_USER')">
-      <h5 th:text="'Total a pagar: '+ ${liquidacion.total} * ${departamento.porcentajeParticipacion}/100"></h5> 
+      <h5 th:text="'Total a pagar: $'+ ${liquidacion.total} * ${departamento.porcentajeParticipacion}/100"></h5> 
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>

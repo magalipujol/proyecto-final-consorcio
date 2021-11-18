@@ -77,7 +77,7 @@
         </thead>
         <tbody>
           <tr th:each="liquidacion : ${liquidaciones}"          >
-            <td th:text="${liquidacion.mes}"></td>
+            <td th:text="${liquidacion.mes} + ' ' + ${liquidacion.anio}"></td>
             <td >
               <span th:if="${liquidacion.publicar == true}" th:text="${liquidacion.total}"></span>
               <span th:unless="${liquidacion.publicar == true}">-</span>

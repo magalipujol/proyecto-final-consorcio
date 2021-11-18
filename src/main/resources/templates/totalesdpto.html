@@ -33,10 +33,10 @@
       <vistas></vistas>
     </div>
     <head>
-      <h1>Eggresos</h1>
+      <h1>Totales por departamento</h1>
     </head>
 
-    <!-- SEARCH -->
+    <!-- SEARCH 
     <div class="container">
       <div class="d-flex justify-content-center">
         <div class="searchbar">
@@ -49,7 +49,7 @@
           <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <!-- EGRESOS  -->
 
@@ -60,16 +60,16 @@
           <tr>
             <th>Periodo</th>
             <th>Departamento</th>
-            <th>Total</th>
-            <th>Monto a pagar</th>
+            <th>Total a pagar</th>
+            <th>Porcentaje</th>
           </tr>
         </thead>
         <tbody>
           <tr th:each="departamento : ${departamentos}">
-            <td th:text="${liquidacion.mes}"></td><!--falta agregar al controlador-->
+            <td th:text="${liquidacion.mes} + ' ' + ${liquidacion.anio}"></td>
             <td th:text="${departamento.piso}+${departamento.dpto}"></td>    
-            <td th:text="${departamento.porcentajeParticipacion}*${liquidacion.total}/100"></td>
-            <td th:text="${departamento.porcentajeParticipacion}"></td>
+            <td th:text="'$' + ${departamento.porcentajeParticipacion}*${liquidacion.total}/100"></td>
+            <td th:text="${departamento.porcentajeParticipacion} + '%'"></td>
           </tr>
         </tbody>
       </table>

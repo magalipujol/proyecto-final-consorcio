@@ -186,6 +186,12 @@ public class LiquidacionService {
 
 			liquidacion.setPublicar(true);
 			
+			totalOrdinarios(id);
+			
+			totalExtraordinarios(id);
+			
+			total(id);
+			
 			liquidacionRepository.save(liquidacion);			
 			return liquidacion;
 		} catch (Exception e) {

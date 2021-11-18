@@ -11,7 +11,7 @@
 
 .footer-background {
     
-    background-image: url("../../static/img/BUILDINGS.png");
+    background-image: url("/img/BUILDINGS.png");
     background-position: center center;
     background-repeat: repeat-x;
     background-size: auto 100%;

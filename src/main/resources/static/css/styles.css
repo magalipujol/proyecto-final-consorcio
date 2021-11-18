@@ -11,7 +11,13 @@
 --violet: #583bb6;
 --light-blue: #6ea6b6;
 --cream: #e8d5b5;
+
+/* paleta */
+--lightviolet: #C9A6E6;
+--aqua: #00C7C6;
 }
+
+
 
 /* ****************************** */
 /* clases para dar estilo general */
@@ -222,10 +228,3 @@ body,html{
   border: none;
   margin-top: 0.5rem;
 }
-
-<<<<<<< HEAD:src/main/resources/templates/css/styles.css
-#card {
-  align-content: center;
-}
-=======
->>>>>>> development:src/main/resources/static/css/styles.css

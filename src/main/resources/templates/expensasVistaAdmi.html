@@ -67,13 +67,18 @@
           <tr>
             <th>Periodo</th>
             <th>Monto</th>
-            <th>Ver/modificar</th>
-            <th>Ver gastos por depto</th>
+            <th>
+              <span sec:authorize="hasRole('ROLE_ADMIN')">Ver/modificar</span>
+              <span sec:authorize="hasRole('ROLE_USER')">Ver</span>
+            </th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')">
+              Ver gastos por depto             
+            </th>
           </tr>
         </thead>
         <tbody>
           <tr th:each="liquidacion : ${liquidaciones}"          >
-            <td th:text="${liquidacion.mes}"></td>
+            <td th:text="${liquidacion.mes} + ' ' + ${liquidacion.anio}"></td>
             <td >
               <span th:if="${liquidacion.publicar == true}" th:text="${liquidacion.total}"></span>
               <span th:unless="${liquidacion.publicar == true}">-</span>
@@ -85,57 +90,23 @@
             </td>
             <!-- Este es el botón que se debería ver en la liquidaciones cerradas -->
             <!-- <td> <button type="button" class="icono fas fa-eye"></button> </td> -->
-            <td>
+            <td sec:authorize="hasRole('ROLE_ADMIN')">
               <!-- El data target lleva al modal(id) de la liquidación que muestra -->
-              <button data-backdrop="false"
-                data-toggle="modal"
-                data-target="#deptoModal"
-                type="button"
-                class="icono fas fa-house-user"
-              ></button>
+              <a class="icono fas fa-house-user" type="button" th:href="@{/departamentos/ver/}+${liquidacion.id}"></a>
             </td>
           </tr>
         </tbody>
       </table>
-
-      <h3 id="periodo-actual">
-        Gastos totales del periodo actual: <span id="periodo-actual-numero">$ 1312</span>
-      </h3>
     </div>
     <!-- TODO el ID tiene que ser dinámico -->
     <!-- Total gastos x depto -->
-    <div class="modal fade" id="deptoModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <h2>Gastos por departamento</h2>
-          <table class="table table-hover">
-              <thead>
-                  <tr>
-                      <th>departamento</th>
-                <th>Periodo</th>
-                <th>Total</th>
-                <th>% participación</th>
-            </tr>
-        </thead>
-            <tbody>
-                <tr>
-                    <td>1 1</td>
-                <td>Agosto</td>
-                <td>234</td>
-                <td>10%</td>
-              </tr>
-            </tbody>
-        </table>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-    </div>
+   
 </div>
     </div>
 
     <!-- Vue.js -->
     <script src="https://unpkg.com/vue@next"></script>
-    <script src="js/VueApp.js"></script>
+    <script src="/js/VueApp.js"></script>
 
     <!-- Boostsrap js -->
     <script

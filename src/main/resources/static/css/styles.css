@@ -4,10 +4,79 @@
 
 :root {
 --orange: #f69065;
---darkBlue: #171F2A;
---grey: #E6E6E6;
+--darkBlue: rgb(23, 31, 42);
+--grey: rgb(230,230,230);
 
+/* Esta paleta de colores me gustó más */
+--violet: #583bb6;
+--light-blue: #6ea6b6;
+--cream: #e8d5b5;
 }
+
+/* ****************************** */
+/* clases para dar estilo general */
+/* ****************************** */
+
+.violet-text{
+  color: var(--violet);
+}
+.orange-text {
+  color: var(--orange);
+}
+.blue-text {
+  color: var(--darkBlue);
+}
+.light-blue-text {
+  color: var(--light-blue);
+}
+.white-text {
+  color: white;
+}
+
+.violet-background {
+  background-color: var(--violet);
+}
+.orange-background {
+  background-color: var(--orange);
+}
+.blue-background {
+  background-color: var(--darkBlue);
+}
+.light-blue-background {
+  background-color: var(--light-blue);
+}
+.cream-brackground {
+  background-color: var(--cream);
+}
+
+.primary-btn {
+  background-color: var(--orange);
+  color: var(--darkBlue);
+}
+.primary-btn:hover {
+  background-color: var(--darkBlue);
+  color: var(--orange);
+}
+
+.secondary-btn {
+  background-color: var(--darkBlue);
+  color: var(--orange);
+}
+.secondary-btn:hover {
+  background-color: var(--orange);
+  color: var(--darkBlue);
+}
+
+.link {
+  text-decoration: none;
+}
+
+.icono {
+  font-size: 1.5rem;
+}
+
+/* ********************** */
+
 section.main-section{
   min-height: calc(100vh - 115px - 56px);
 }
@@ -32,7 +101,7 @@ h3 {
   background-color: transparent;
   color: var(--orange);
   border: none;
-  
+
 }
 
 body,html{
@@ -154,6 +223,9 @@ body,html{
   margin-top: 0.5rem;
 }
 
+<<<<<<< HEAD:src/main/resources/templates/css/styles.css
 #card {
   align-content: center;
 }
+=======
+>>>>>>> development:src/main/resources/static/css/styles.css

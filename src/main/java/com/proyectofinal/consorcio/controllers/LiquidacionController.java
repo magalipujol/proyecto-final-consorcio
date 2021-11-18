@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.proyectofinal.consorcio.entities.Departamento;
 import com.proyectofinal.consorcio.entities.Edificio;
 import com.proyectofinal.consorcio.entities.Egreso;
 import com.proyectofinal.consorcio.entities.Liquidacion;
+import com.proyectofinal.consorcio.entities.Usuario;
+import com.proyectofinal.consorcio.services.DepartamentoService;
 import com.proyectofinal.consorcio.services.EdificioService;
 import com.proyectofinal.consorcio.services.EgresoService;
 import com.proyectofinal.consorcio.services.LiquidacionService;
+import com.proyectofinal.consorcio.services.UsuarioService;
 
 @Controller
 @RequestMapping("/liquidaciones")
@@ -26,6 +30,12 @@ public class LiquidacionController {
 
 	@Autowired
 	private EdificioService edificioService;
+	
+	@Autowired
+	private DepartamentoService departamentoService;
+	
+	@Autowired
+	private UsuarioService usuarioService;
 	
 	@Autowired
 	private EgresoService egresoService;
@@ -80,12 +90,26 @@ public class LiquidacionController {
 			
 			model.addAttribute("liquidacion", liquidacion);
 			
+			Usuario usuario = usuarioService.getUserByLogin();
+			
+			Departamento departamento = departamentoService.buscarPorUsuario(usuario.getId());
+			
+			model.addAttribute("departamento", departamento);
+			
+			List<Egreso> ordinarios = egresoService.listarOrdinariosMes(id);
+
+			model.addAttribute("ordinarios", ordinarios);
+			
+			List<Egreso> extraordinarios = egresoService.listarExtraordinariosMes(id);
+
+			model.addAttribute("extraordinarios", extraordinarios);
+			
 			List<Egreso> egresos = egresoService.listarActivosMes(id);
 
 			model.addAttribute("egresos", egresos);
 			
 			//Retorna vista de una liquidacion
-			return "expensasVistaAdmi.html";
+			return "expensasVistaUsuario.html";
 		} catch (Exception e) {
 			throw new Exception("Error en controlador verLiquidacion");
 		}
@@ -112,19 +136,19 @@ public class LiquidacionController {
 	@PostMapping("/liquidar/")
 	public String liquidarExpensas(ModelMap model,@RequestParam String id) throws Exception{
 		try {
-			Double totalOrdinarios = liquidacionService.totalOrdinarios(id);
-			Double totalExtraordinarios = liquidacionService.totalExtraordinarios(id);
-			Double total = liquidacionService.total(id);
-			List<Egreso> listaEgresos = egresoService.listarActivosMes(id);
-
-			model.addAttribute("ordinarios", totalOrdinarios);			
-			model.addAttribute("extraordinarios", totalExtraordinarios);			
-			model.addAttribute("total", total);			
-			model.addAttribute("egresos", listaEgresos);
+			List<Egreso> ordinarios = egresoService.listarOrdinariosMes(id);
+			List<Egreso> extraordinarios = egresoService.listarExtraordinariosMes(id);
+					
+			model.addAttribute("ordinarios", ordinarios);			
+			model.addAttribute("extraordinarios", extraordinarios);			
 			
 			liquidacionService.publicar(id);
 			
-			return "expensasVistaAdmi.html";
+			Liquidacion liquidacion = liquidacionService.buscarPorId(id);
+			
+			model.addAttribute("liquidacion", liquidacion);
+			
+			return "expensasVistaUsuario.html";
 		} catch (Exception e) {
 			throw new Exception ("Error en controlador liquidarExpensas");
 		}

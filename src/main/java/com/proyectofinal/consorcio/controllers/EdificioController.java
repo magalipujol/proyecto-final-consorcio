@@ -17,6 +17,7 @@ import com.proyectofinal.consorcio.entities.Liquidacion;
 import com.proyectofinal.consorcio.services.DepartamentoService;
 import com.proyectofinal.consorcio.services.EdificioService;
 import com.proyectofinal.consorcio.services.LiquidacionService;
+import com.proyectofinal.consorcio.services.UsuarioService;
 
 @Controller
 @RequestMapping("/edificios")
@@ -27,7 +28,26 @@ public class EdificioController {
     private DepartamentoService departamentoService;
     @Autowired
     private LiquidacionService liquidacionService;
+    @Autowired
+    private UsuarioService usuarioService;
     
+    
+    
+	@GetMapping("/ver")
+    public String verEdificios (ModelMap model) throws Exception {
+    	try {
+    		String mail = usuarioService.getUserByLogin().getMail();
+    		List<Edificio> listaEdificios = edificioService.listarActivos();
+
+    		model.addAttribute("mail", mail);        	        		
+    		model.addAttribute("edificios", listaEdificios);
+    		
+    		return "verEdificios.html";
+		} catch (Exception e) {
+			throw new Exception ("Error en controlador verLiquidaciones");
+		}
+    }
+	
     @GetMapping("/ver-liquidaciones/{id}")
     public String verLiquidaciones (@PathVariable Long id, ModelMap model) throws Exception {
     	try {

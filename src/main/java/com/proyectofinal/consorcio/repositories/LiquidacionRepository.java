@@ -19,7 +19,8 @@ public interface LiquidacionRepository extends JpaRepository<Liquidacion, String
 	
 	//@Query("SELECT l FROM Liquidacion l WHERE l.publicar = true AND l.alta = true ORDER BY l.anio DESC")
 	
-	@Query("SELECT l FROM Liquidacion l JOIN Edificio e ON e.id = l.edificio.id JOIN Departamento d ON e.id = d.edificio.id JOIN Usuario u ON u.id = d.usuario.id WHERE u.id = :id")
+	//falta que publicar sea true
+	@Query("SELECT l FROM Liquidacion l JOIN Edificio e ON e.id = l.edificio.id JOIN Departamento d ON e.id = d.edificio.id JOIN Usuario u ON u.id = d.usuario.id WHERE u.id = :id AND l.publicar = true")
 	public List<Liquidacion> listarLiquidacionesUsuario(@Param("id") String id);
 	
 	

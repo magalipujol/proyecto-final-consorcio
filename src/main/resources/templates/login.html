@@ -12,9 +12,11 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
   </head>
-  <!-- TODO pasar los styles a archivos aparte -->
  
   <body>
     <div id="app" v-cloaks>
@@ -24,7 +26,8 @@
   <!-- SECTION -->
   <section class="main-section">
     <!-- TODO esto debería estar hecho en vue -->
-    <div class="card" style="width: 18rem">
+    
+    <div class="card" style="width: 28rem">
       <div class="card-body">
         <h5 class="card-title">Login</h5>
         <form th:action="@{/logincheck}" method="POST">
@@ -62,7 +65,7 @@
   <footer>
     <div class="footer-background">	
       <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center">
-        <p class="h6">© All right Reversed. Eggdificio</a></p>
+        <p class="h6">© All right reserved. Eggdificio</a></p>
     </div>	
   </footer>
   </body>

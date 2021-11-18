@@ -7,7 +7,8 @@
 .navbar {
     background-color: var(--orange) !important;
     font-family: 'Shippori Antique', sans-serif;
-    
+
+}   
 
 
 .nav-link:hover {
@@ -20,14 +21,6 @@
     color: white !important;
     margin-left: 1%;
     font-family: 'Shippori Antique', sans-serif;
-}
-.navbar-brand:hover {
-    font-weight: 600;
-}
-
-.navbar-nav {
-    margin-left: auto;
-    
 }
 
 .vistas {

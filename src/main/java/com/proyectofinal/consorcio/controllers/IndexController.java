@@ -58,7 +58,7 @@ public class IndexController {
 			return "login";
 		}
 	}
-
+    
     @GetMapping("/loginsuccess")
 	public String loginresolver(HttpServletRequest request, ModelMap model, Authentication usuario) throws Exception{
     	try {
@@ -85,4 +85,5 @@ public class IndexController {
 			throw new Exception ("Error en loginsuccess controller");
 		}    	
 	}
+    
 }

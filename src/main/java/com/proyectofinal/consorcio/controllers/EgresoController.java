@@ -3,6 +3,7 @@ package com.proyectofinal.consorcio.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class EgresoController {
 	@Autowired
 	private EgresoService egresoService;
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/eliminar/{id}")
     public String eliminar (@PathVariable String id, ModelMap model) throws Exception{
     	try {
@@ -48,6 +50,7 @@ public class EgresoController {
 		}    	
     }
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_USER')")
 	@GetMapping("/ver/{id_liquidacion}")
 	public String verLiquidacion (ModelMap model,@PathVariable String id_liquidacion) throws Exception {
 		try {
@@ -71,7 +74,7 @@ public class EgresoController {
 	
 	
 	
-	//Vista solo para el admin	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/guardar")
 	public String guardarEgresos (ModelMap model, @RequestParam String detalle, @RequestParam Double monto,
 			@RequestParam String tipoGasto, @RequestParam String id_liquidacion) throws Exception{

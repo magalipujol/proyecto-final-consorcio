@@ -3,6 +3,7 @@ package com.proyectofinal.consorcio.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,18 +31,19 @@ public class LiquidacionController {
 
 	@Autowired
 	private EdificioService edificioService;
-	
+
 	@Autowired
 	private DepartamentoService departamentoService;
-	
+
 	@Autowired
 	private UsuarioService usuarioService;
-	
+
 	@Autowired
 	private EgresoService egresoService;
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/cargar/{id_edificio}")
-	public String crearLiquidacion(ModelMap model,@PathVariable Long id_edificio) throws Exception {
+	public String crearLiquidacion(ModelMap model, @PathVariable Long id_edificio) throws Exception {
 		try {
 			Edificio edificio = edificioService.buscarPorId(id_edificio);
 
@@ -52,26 +54,28 @@ public class LiquidacionController {
 			throw new Exception("Error en controlador crearLiquidacion");
 		}
 	}
-	
-	 @GetMapping("/modificar/{id}")
-	    public String modificar (@PathVariable String id, ModelMap model) throws Exception{
-	    	try {
-				Liquidacion liquidacion = liquidacionService.buscarPorId(id);
 
-				model.addAttribute("liquidacion", liquidacion);
-				
-				List<Egreso> egresos = egresoService.listarActivosMes(id);
-				
-				model.addAttribute("egresos", egresos);
-				
-				return "cargarMovimientos.html";
-			} catch (Exception e) {
-				throw new Exception ("Error en controlador modificar liquidacion");
-			}    	
-	    }
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/modificar/{id}")
+	public String modificar(@PathVariable String id, ModelMap model) throws Exception {
+		try {
+			Liquidacion liquidacion = liquidacionService.buscarPorId(id);
+
+			model.addAttribute("liquidacion", liquidacion);
+
+			List<Egreso> egresos = egresoService.listarActivosMes(id);
+
+			model.addAttribute("egresos", egresos);
+
+			return "cargarMovimientos.html";
+		} catch (Exception e) {
+			throw new Exception("Error en controlador modificar liquidacion");
+		}
+	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/ver-lista/{id_edificio}")
-	public String verLiquidacionesEdificio (ModelMap model,@PathVariable Long id_edificio) throws Exception {
+	public String verLiquidacionesEdificio(ModelMap model, @PathVariable Long id_edificio) throws Exception {
 		try {
 			List<Liquidacion> liquidaciones = liquidacionService.listarLiquidacionesAdmin(id_edificio);
 
@@ -83,74 +87,77 @@ public class LiquidacionController {
 		}
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_USER')")
 	@GetMapping("/ver/{id}")
-	public String verLiquidacion (ModelMap model,@PathVariable String id) throws Exception {
+	public String verLiquidacion(ModelMap model, @PathVariable String id) throws Exception {
 		try {
 			Liquidacion liquidacion = liquidacionService.buscarPorId(id);
-			
+
 			model.addAttribute("liquidacion", liquidacion);
-			
+
 			Usuario usuario = usuarioService.getUserByLogin();
-			
+
 			Departamento departamento = departamentoService.buscarPorUsuario(usuario.getId());
-			
+
 			model.addAttribute("departamento", departamento);
-			
+
 			List<Egreso> ordinarios = egresoService.listarOrdinariosMes(id);
 
 			model.addAttribute("ordinarios", ordinarios);
-			
+
 			List<Egreso> extraordinarios = egresoService.listarExtraordinariosMes(id);
 
 			model.addAttribute("extraordinarios", extraordinarios);
-			
+
 			List<Egreso> egresos = egresoService.listarActivosMes(id);
 
 			model.addAttribute("egresos", egresos);
-			
-			//Retorna vista de una liquidacion
+
+			// Retorna vista de una liquidacion
 			return "expensasVistaUsuario.html";
 		} catch (Exception e) {
 			throw new Exception("Error en controlador verLiquidacion");
 		}
 	}
-
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/guardar")
-	public String guardarLiquidacion(ModelMap model, @RequestParam String mes,
-			@RequestParam Integer yearpicker, @RequestParam Long id_edificio) throws Exception {		
+	public String guardarLiquidacion(ModelMap model, @RequestParam String mes, @RequestParam Integer yearpicker,
+			@RequestParam Long id_edificio) throws Exception {
 		try {
 			Liquidacion liquidacion = liquidacionService.crear(mes, yearpicker, id_edificio);
 
 			model.addAttribute("liquidacion", liquidacion);
-			
+
 			Edificio edificio = edificioService.buscarPorId(id_edificio);
-			
+
 			model.addAttribute("edificio", edificio);
-			
+
 			return "cargarMovimientos.html";
 		} catch (Exception e) {
 			throw new Exception("Error en controlador guardarLiquidacion");
 		}
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/liquidar/")
-	public String liquidarExpensas(ModelMap model,@RequestParam String id) throws Exception{
+	public String liquidarExpensas(ModelMap model, @RequestParam String id) throws Exception {
 		try {
 			List<Egreso> ordinarios = egresoService.listarOrdinariosMes(id);
 			List<Egreso> extraordinarios = egresoService.listarExtraordinariosMes(id);
-					
-			model.addAttribute("ordinarios", ordinarios);			
-			model.addAttribute("extraordinarios", extraordinarios);			
-			
+
+			model.addAttribute("ordinarios", ordinarios);
+			model.addAttribute("extraordinarios", extraordinarios);
+
 			liquidacionService.publicar(id);
-			
+
 			Liquidacion liquidacion = liquidacionService.buscarPorId(id);
-			
+
 			model.addAttribute("liquidacion", liquidacion);
-			
+
 			return "expensasVistaUsuario.html";
 		} catch (Exception e) {
-			throw new Exception ("Error en controlador liquidarExpensas");
+			throw new Exception("Error en controlador liquidarExpensas");
 		}
 	}
 }

@@ -17,24 +17,24 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 
-	@GetMapping("/cambiar-contrasenia")
+	@GetMapping("/cambiarContrasenia")
 	public String cambiarContrasenia(ModelMap model) throws Exception {
 		try {			
 			return "cambiarcontrasenia.html";			
 		} catch (Exception e) {
-			throw new Exception("Error en controlador cambiar contraseña");
-		}
-
+			model.addAttribute("error", e.getMessage());
+			return "cambiarcontrasenia.html";		}
 	}
 
 	@PostMapping("/cambiar-contrasenia")
-	public String modificarContrasenia(@RequestParam String contrasenia1, @RequestParam String contrasenia2) throws Exception {
+	public String modificarContrasenia(@RequestParam String contrasenia1, @RequestParam String contrasenia2, ModelMap model) throws Exception {
 		try {
 			usuarioService.cambiarContrasenia(contrasenia1, contrasenia2);
 
 			return "redirect:/logout";
 		} catch (Exception e) {
-			throw new Exception("Error al modificar contraseña");
+			model.addAttribute("error", e.getMessage());
+			return "redirect:/logout";	
 		}
 
 	}

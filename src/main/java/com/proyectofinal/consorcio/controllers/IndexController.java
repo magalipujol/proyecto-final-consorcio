@@ -80,9 +80,10 @@ public class IndexController {
         		
     			return "expensasVistaAdmi.html";
     		}
-    		return "errors.html";
+    		return "index.html";
 		} catch (Exception e) {
-			throw new Exception ("Error en loginsuccess controller");
+			model.addAttribute("error", e.getMessage());
+			return "index.html";
 		}    	
 	}
     

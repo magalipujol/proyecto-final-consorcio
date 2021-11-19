@@ -51,7 +51,8 @@ public class LiquidacionController {
 
 			return "cargarMovimientos.html";
 		} catch (Exception e) {
-			throw new Exception("Error en controlador crearLiquidacion");
+			model.addAttribute("error", e.getMessage());
+			return "cargarMovimientos.html";
 		}
 	}
 
@@ -69,7 +70,8 @@ public class LiquidacionController {
 
 			return "cargarMovimientos.html";
 		} catch (Exception e) {
-			throw new Exception("Error en controlador modificar liquidacion");
+			model.addAttribute("error", e.getMessage());
+			return "cargarMovimientos.html";
 		}
 	}
 	
@@ -83,7 +85,8 @@ public class LiquidacionController {
 
 			return "expensasVistaAdmi.html";
 		} catch (Exception e) {
-			throw new Exception("Error en controlador verLiquidacionesEdificio");
+			model.addAttribute("error", e.getMessage());
+			return "expensasVistaAdmi.html";
 		}
 	}
 	
@@ -116,7 +119,8 @@ public class LiquidacionController {
 			// Retorna vista de una liquidacion
 			return "expensasVistaUsuario.html";
 		} catch (Exception e) {
-			throw new Exception("Error en controlador verLiquidacion");
+			model.addAttribute("error", e.getMessage());
+			return "expensasVistaUsuario.html";
 		}
 	}
 	
@@ -135,7 +139,8 @@ public class LiquidacionController {
 
 			return "cargarMovimientos.html";
 		} catch (Exception e) {
-			throw new Exception("Error en controlador guardarLiquidacion");
+			model.addAttribute("error", e.getMessage());
+			return "cargarMovimientos.html";
 		}
 	}
 	
@@ -157,7 +162,8 @@ public class LiquidacionController {
 
 			return "expensasVistaUsuario.html";
 		} catch (Exception e) {
-			throw new Exception("Error en controlador liquidarExpensas");
+			model.addAttribute("error", e.getMessage());
+			return "expensasVistaUsuario.html";
 		}
 	}
 }

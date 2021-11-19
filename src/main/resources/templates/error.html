@@ -25,7 +25,10 @@
   <body>
       <div class="jumbotron">
         <h1 class="display-4 title">EGGDIFICIO </h1>
-        <p class="lead">ERROR</p>
+        	<div class="col-lg-6 col-md-8 mx-auto">
+				<h2 class="fw-light" th:text="'Error ' + ${codigo}"></h2>
+				<p class="lead text-muted" th:text="${mensaje}"></p>
+			</div>
         <hr class="my-4" />
         <div>
 		<a href="http://127.0.0.1:5500/src/main/resources/templates/index.html" <button class="btn btn-secondary"> Volver al inicio </button></a>

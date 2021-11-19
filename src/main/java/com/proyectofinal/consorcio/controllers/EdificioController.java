@@ -1,4 +1,4 @@
-	package com.proyectofinal.consorcio.controllers;
+package com.proyectofinal.consorcio.controllers;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ public class EdificioController {
     
     @PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/ver")
-    public String verEdificios (ModelMap model) throws Exception {
+    public String verEdificios (ModelMap model) throws Exception{
     	try {
     		String mail = usuarioService.getUserByLogin().getMail();
     		List<Edificio> listaEdificios = edificioService.listarActivos();
@@ -45,7 +45,8 @@ public class EdificioController {
     		
     		return "verEdificios.html";
 		} catch (Exception e) {
-			throw new Exception ("Error en controlador verLiquidaciones");
+			model.addAttribute("error", e.getMessage());
+			return "verEdificios.html";
 		}
     }
 	
@@ -59,17 +60,19 @@ public class EdificioController {
 
 			return "lista-liquidaciones.html";
 		} catch (Exception e) {
-			throw new Exception ("Error en controlador verLiquidaciones");
+			model.addAttribute("error", e.getMessage());
+			return "lista-liquidaciones.html";
 		}
     }
     
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/crearedificio")
-    public String crearEdificio() throws Exception {
+    public String crearEdificio(ModelMap model) throws Exception {
     	try {
 			return "formCrearEdificio.html";
 		} catch (Exception e) {
-			throw new Exception ("Error en controlador crearEdificio");
+			model.addAttribute("error", e.getMessage());
+			return "formCrearEdificio.html";
 		}
     }
     
@@ -92,7 +95,8 @@ public class EdificioController {
 
 	        return "formAgregarDepartamento.html";
 		} catch (Exception e) {
-			throw new Exception ("Error en controlador crear edificio");
+			model.addAttribute("error", e.getMessage());
+			return "formCrearEdificio.html";
 		}
     }
     
@@ -106,7 +110,8 @@ public class EdificioController {
 
 			return "formCrearEdificio.html";
 		} catch (Exception e) {
-			throw new Exception ("Error en controlador modificar edificio");
+			model.addAttribute("error", e.getMessage());
+			return "formCrearEdificio.html";
 		}    	
     }
     
@@ -122,7 +127,8 @@ public class EdificioController {
 
 			return "formCrearEdificio.html";
 		} catch (Exception e) {
-			throw new Exception ("Error en controlador darDeBaja edificio");
+			model.addAttribute("error", e.getMessage());
+			return "formCrearEdificio.html";
 		}    	
     }    
 }

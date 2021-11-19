@@ -41,7 +41,7 @@ public class UsuarioService implements UserDetailsService {
         Usuario usuario = usuarioRepository.findByMail(mail);
 
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(usuario.getMail().equals("pepe@gg.com") ? "ROLE_ADMIN" : "ROLE_USER"));
+        authorities.add(new SimpleGrantedAuthority(usuario.getMail().equals("admin") ? "ROLE_ADMIN" : "ROLE_USER"));
 
         UserDetails userDetails = new User(usuario.getMail(), usuario.getPassword(), authorities);
 
@@ -58,7 +58,7 @@ public class UsuarioService implements UserDetailsService {
 
 			Usuario usuario = new Usuario();			
 			usuario.setMail(mail);
-			usuario.setPassword(encoder.encode("pepe"));
+			usuario.setPassword(encoder.encode(mail));
 
 			usuarioRepository.save(usuario);
 			return usuario;

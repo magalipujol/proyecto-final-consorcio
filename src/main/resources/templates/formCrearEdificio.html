@@ -35,6 +35,9 @@
             placeholder="E.g. Pueggredón 00" name="direccion" required />
         </div>
         <button class="btn btn-secondary">Añadir edificio</button>
+        <div th:if="${error} != null" class="alert alert-danger" role="alert">
+          <h3 th:text="${error}"></h3>
+        </div>
         <script src="https://unpkg.com/vue@next"></script>
 
         <script src="js/VueApp.js"></script>

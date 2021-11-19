@@ -46,7 +46,8 @@ public class EgresoController {
 			
 			return "cargarMovimientos.html";
 		} catch (Exception e) {
-			throw new Exception ("Error en controlador modificar liquidacion");
+			model.addAttribute("error", e.getMessage());
+			return "cargarMovimientos.html";
 		}    	
     }
 	
@@ -68,7 +69,8 @@ public class EgresoController {
 
 			return "expensasVistaUsuario.html";
 		} catch (Exception e) {
-			throw new Exception("Error en controlador verLiquidacionesEdificio");
+			model.addAttribute("error", e.getMessage());
+			return "expensasVistaUsuario.html";
 		}
 	}
 	
@@ -89,7 +91,8 @@ public class EgresoController {
 				
 			return "cargarMovimientos.html";
 		} catch (Exception e) {
-			throw new Exception ("Error en controlador guardarEgresos");
+			model.addAttribute("error", e.getMessage());
+			return "cargarMovimientos.html";
 		}	
 	}	
 }

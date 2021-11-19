@@ -49,7 +49,8 @@ public class DepartamentoController {
 			
 			return "totalesdpto.html";
 		} catch (Exception e) {
-			throw new Exception("Error en controlador modificar departamento");
+			model.addAttribute("error", e.getMessage());
+			return "totalesdpto.html";
 		}
 	}
 	
@@ -63,7 +64,8 @@ public class DepartamentoController {
 
 			return "formAgregarDepartamento.html";
 		} catch (Exception e) {
-			throw new Exception("Error en controlador modificar departamento");
+			model.addAttribute("error", e.getMessage());
+			return "formAgregarDepartamento.html";
 		}
 	}
 
@@ -78,7 +80,8 @@ public class DepartamentoController {
 
 			return "verEdificios.html";
 		} catch (Exception e) {
-			throw new Exception("Error en controlador darDeBaja departamento");
+			model.addAttribute("error", e.getMessage());
+			return "verEdificios.html";
 		}
 	}
 	
@@ -101,7 +104,8 @@ public class DepartamentoController {
 
 			return "formAgregarDepartamento.html";
 		} catch (Exception e) {
-			throw new Exception("Error en controlador agregarDpto");
+			model.addAttribute("error", e.getMessage());
+			return "formAgregarDepartamento.html";
 		}
 	}
 }

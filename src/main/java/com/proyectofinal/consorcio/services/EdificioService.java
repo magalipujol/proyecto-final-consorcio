@@ -21,21 +21,21 @@ public class EdificioService {
 	public Edificio crear(String direccion) throws Exception {
 		try {
 			validar(direccion);
-			
+
 			Edificio edificio = new Edificio();
 			edificio.setDireccion(direccion);
-			edificio.setAlta(true);	
-			edificio.setAdministrador(usuarioService.getUserByLogin());			
+			edificio.setAlta(true);
+			edificio.setAdministrador(usuarioService.getUserByLogin());
 
-			edificioRepository.save(edificio);			
+			edificioRepository.save(edificio);
 			return edificio;
 		} catch (Exception e) {
-			throw new Exception("Error al crear edificio");		
+			throw new Exception("Error al crear edificio");
 		}
 	}
 
 	@Transactional
-	public Edificio modificar(Long id, String direccion) throws Exception{
+	public Edificio modificar(Long id, String direccion) throws Exception {
 		try {
 			validar(direccion);
 
@@ -45,7 +45,7 @@ public class EdificioService {
 			edificioRepository.save(edificio);
 			return edificio;
 		} catch (Exception e) {
-			throw new Exception ("Error en modificar edificio");
+			throw new Exception("Error en modificar edificio");
 		}
 	}
 
@@ -71,24 +71,20 @@ public class EdificioService {
 			throw new Exception("Error al listar edificios");
 		}
 	}
-	
+
 	@Transactional(readOnly = true)
-	public Edificio buscarPorId (Long id) throws Exception {
+	public Edificio buscarPorId(Long id) throws Exception {
 		try {
 			Edificio edificio = edificioRepository.findById(id).get();
 			return edificio;
 		} catch (Exception e) {
-			throw new Exception ("Error al buscar edificio por id");
+			throw new Exception("Error al buscar edificio por id");
 		}
 	}
 
 	public void validar(String direccion) throws Exception {
-		try {
-			if (direccion == null || direccion.isEmpty()) {
-				throw new Exception("La dirección no puede estar vacía");
-			}
-		} catch (Exception e) {
-			e.getMessage();
+		if (direccion == null || direccion.isEmpty() || direccion.equals("pepe")) {
+			throw new Exception("La dirección no puede estar vacía");
 		}
 	}
 }

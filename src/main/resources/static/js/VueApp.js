@@ -23,8 +23,8 @@ app.component("navbar", {
 
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-    <a class="nav-item nav-link" href="@{/cambiarContrasenia}" v-on:click="alertLogOut">CAMBIAR CONTRASEÑA</a>
-      <a :v-if="backBtn" class="nav-item nav-link active" :href="backBtnRef">VOLVER  {{ backBtnRef }}</a>
+      <a class="nav-item nav-link" href="@{/cambiarContrasenia}">CAMBIAR CONTRASEÑA</a>
+      <a class="nav-item nav-link" href="@{/}">INICIO</a>
       <a class="nav-item nav-link" href="@{/login}" v-on:click="alertLogOut">LOG OUT</a>
     </div>
   </div>

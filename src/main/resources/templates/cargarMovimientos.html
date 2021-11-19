@@ -1,78 +1,43 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
->
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      src="https://kit.fontawesome.com/53584266fb.js"
-      crossorigin="anonymous"
-    ></script>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-    <title>Cargar Movimientos</title>
-    <!-- Bootstrap Stylesheet -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../static/css/styles.css" />
-    
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/53584266fb.js" crossorigin="anonymous"></script>
 
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
-    />
-  </head>
+  <title>Cargar Movimientos</title>
+  <!-- Bootstrap Stylesheet -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/styles.css" />
 
-  <body>
-    <!-- NAVBAR -->
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+</head>
+
+<body>
+  <section class="main-section">
     <div id="app" v-cloaks>
-      <navbar
-        :backBtn="true"
-        :backBtnRef="'verEdificios.html'"
-        class="navbar"
-      ></navbar>
-      <vistas></vistas>
+      <navbar :backBtn="true" :backBtnRef="'verEdificios.html'" class="navbar"></navbar>
     </div>
-
-    
-    <!-- SECTION -->
-    <section class="main-section">
-      <h1>Movimientos</h1>
-    <div
-      th:if="${liquidacion} == null"
-      class="container"
-      id="agregar-movimiento"
-    >
+    <h1 style="margin-left: 850px; margin-top: 20px; margin-bottom: 20px;">Movimientos</h1>
+    <div th:if="${liquidacion} == null" class="container" id="agregar-movimiento">
       <form th:action="@{/liquidaciones/guardar}" method="POST">
         <div class="form-group">
-          <p>Período</p>
           <hr />
           <input hidden name="id_edificio" th:value="${edificio.id}" />
           <div class="form-group">
             <label>Mes</label>
             <div class="input-group date" id="dateTime">
-              <select
-                name="mes"
-                type="text"
-                class="form-control form_datetime_2 input-sm bg-white"
-                id="dateVal"
-                readonly
-              >
+              <select name="mes" type="text" class="form-control form_datetime_2 input-sm bg-white" id="dateVal"
+                readonly>
                 <span class="input-group-addon">
                   <span class="glyphicon glyphicon-calendar">
-                    <option
-                      th:each="mes : ${T(com.proyectofinal.consorcio.enums.Meses).values()}"
-                      th:value="${mes}"
-                      th:text="${mes}"
-                    ></option>
+                    <option th:each="mes : ${T(com.proyectofinal.consorcio.enums.Meses).values()}" th:value="${mes}"
+                      th:text="${mes}"></option>
                   </span>
                 </span>
               </select>
@@ -86,10 +51,9 @@
               <select name="yearpicker" id="yearpicker">
                 asdasdas
               </select>
+
             </div>
           </div>
-          <br>
-          
         </div>
         <button class="btn btn-secondary" type="submit">
           Crear liquidación
@@ -100,56 +64,25 @@
     <!-- FIN DEL PRIMER FORM -->
     <div class="container">
       <form th:action="@{/egresos/guardar}" method="POST">
-        <input
-          th:if="${liquidacion} != null"
-          hidden
-          name="id_liquidacion"
-          th:value="${liquidacion.id}"
-        />
+        <input th:if="${liquidacion} != null" hidden name="id_liquidacion" th:value="${liquidacion.id}" />
         <div>
           <div class="mb-3">
-            <label for="formGroupExampleInput" class="form-label"
-              >Detalle</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              name="detalle"
-              id="formGroupExampleInput"
-            />
+            <label for="formGroupExampleInput" class="form-label">Detalle</label>
+            <input type="text" class="form-control" name="detalle" id="formGroupExampleInput" />
           </div>
 
           <div>
-            <label
-              >Monto $
-              <input
-                type="number"
-                placeholder="0.00"
-                required
-                name="monto"
-                min="0"
-                value="0"
-                step="0.01"
-                title="Currency"
-                pattern="^\d+(?:\.\d{1,2})?$"
-            /></label>
-          </div>
-          <br>
-          <!-- CHECK BUTTON EXPENSES TYPE -->
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
-              Gasto ordinario
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-              Gasto extraordinario
-            </label>
+            <label>Monto $
+              <input type="number" placeholder="0.00" required name="monto" min="0" value="0" step="0.01"
+                title="Currency" pattern="^\d+(?:\.\d{1,2})?$" /></label>
           </div>
 
-
+          <div th:each="tipoGasto: ${T(com.proyectofinal.consorcio.enums.TipoGasto).values()}" class="form-check">
+            <input class="form-check-input" type="radio" name="tipoGasto" th:id="${tipoGasto}"
+              th:value="${tipoGasto}" />
+            <label class="form-check-label" th:for="${tipoGasto}" th:text="${tipoGasto}">
+            </label>
+          </div>
         </div>
         <button class="btn btn-secondary" type="submit">
           Agregar movimiento
@@ -182,33 +115,31 @@
       </table>
       <form th:if="${liquidacion} != null" th:action="@{/liquidaciones/liquidar/}" method="POST">
         <input type="hidden" name="id" th:value="${liquidacion.id}">
-        <button class="btn btn-secondary" type="submit" >Liquidar</button>
+        <button class="btn btn-secondary" type="submit">Liquidar</button>
+        <button id="back-btn" class="btn btn-secondary"><a href="/edificios/ver">Volver</a></button>
       </form>
-      <button class="btn btn-secondary" type="submit">Volver</button>
     </div>
   </section>
-   
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-background">	
-        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center">
-          <p class="h6">© All right reserved. Eggdificio</a></p>
-      </div>	
-    </footer>
-  </body>
-  
-  <script
-    type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-  ></script>
 
-  <script type="text/javascript">
-    let endYear = new Date().getFullYear();
-    $("#yearpicker").append($("<option />").val(endYear).html(endYear));
-  </script>
-  <script src="https://unpkg.com/vue@next"></script>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-background">
+      <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center">
+        <p class="h6">© All right Reversed. Eggdificio</a></p>
+      </div>
+  </footer>
+</body>
 
-  <script src="/js/VueApp.js"></script>
-  <script src="particles.js"></script>
-  <script src="particulas.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+  let endYear = new Date().getFullYear();
+  $("#yearpicker").append($("<option />").val(endYear).html(endYear));
+</script>
+<script src="https://unpkg.com/vue@next"></script>
+
+<script src="/js/VueApp.js"></script>
+<script src="particles.js"></script>
+<script src="particulas.js"></script>
+
 </html>

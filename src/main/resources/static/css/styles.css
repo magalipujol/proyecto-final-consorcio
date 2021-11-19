@@ -178,23 +178,17 @@ body,html{
   color: white;
   font-weight: 600;
 }
+
 #botonAbajo {
   background-color: var(--orange);
   border: none;
-  float: right;
-  margin-right: 70px;
-  margin-top: 35rem;
   font-size: 30px;
   font-family: 'Shippori Antique', sans-serif;
-
 }
 
-#botonAbajo:hover {
-  background-color: var(--darkBlue);
+#botonAbajo:hover {  
+  background-color: white;
   border: none;
-  float: right;
-  margin-right: 70px;
-  margin-top: 35rem;
   font-size: 30px;
   font-family: 'Shippori Antique', sans-serif;
 }
@@ -227,4 +221,8 @@ body,html{
   color: var(--orange);
   border: none;
   margin-top: 0.5rem;
+}
+
+a {  
+  text-decoration: none;
 }

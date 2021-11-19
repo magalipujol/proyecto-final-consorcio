@@ -23,9 +23,9 @@ app.component("navbar", {
 
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" href="/cambiarContrasenia">CAMBIAR CONTRASEÑA</a>
+      <a class="nav-item nav-link" href="/usuario/cambiarContrasenia">CAMBIAR CONTRASEÑA</a>
       <a class="nav-item nav-link" href="/">INICIO</a>
-      <a class="nav-item nav-link" href="/login" v-on:click="alertLogOut">LOG OUT</a>
+      <a class="nav-item nav-link" href="/logout" v-on:click="alertLogOut">LOG OUT</a>
     </div>
   </div>
 </nav>

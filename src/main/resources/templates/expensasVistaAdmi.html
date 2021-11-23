@@ -44,12 +44,11 @@
           <tr th:each="liquidacion : ${liquidaciones}">
             <td th:text="${liquidacion.mes} + ' ' + ${liquidacion.anio}"></td>
             <td>
-              <span th:if="${liquidacion.publicar == true}" th:text="'$' + ${liquidacion.total}"></span>
+              <span th:if="${liquidacion.publicar == true}" th:text="'$' + ${#numbers.formatDecimal(liquidacion.total, 1, 2)}"></span>
               <span th:unless="${liquidacion.publicar == true}">-</span>
             </td>
-            <!-- ese .0 es porque queda sin digitos despues de la coma al multiplicar -->
             <td sec:authorize="hasRole('ROLE_USER')">
-              <span th:text="'$' + ${liquidacion.total} * ${departamento.porcentajeParticipacion}/100 + '.0'">
+              <span th:text="'$' + ${#numbers.formatDecimal(((liquidacion.total + 0.0) * departamento.porcentajeParticipacion) / 100, 1, 2)}">
             </td>
             <td>
               <span th:if="${liquidacion.publicar == true}"><a type="button"

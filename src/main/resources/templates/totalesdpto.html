@@ -38,7 +38,7 @@
           <tr th:each="departamento : ${departamentos}">
             <td th:text="${liquidacion.mes} + ' ' + ${liquidacion.anio}"></td>
             <td th:text="${departamento.piso}+${departamento.dpto}"></td>
-            <td th:text="'$' + ${departamento.porcentajeParticipacion} * ${liquidacion.total}/100"></td>
+            <td th:text="'$' + ${#numbers.formatDecimal(((liquidacion.total + 0.0) * departamento.porcentajeParticipacion) / 100, 1, 2)}"></td>
             <td th:text="${departamento.porcentajeParticipacion} + '%'"></td>
           </tr>
         </tbody>

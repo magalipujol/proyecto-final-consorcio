@@ -11,7 +11,7 @@ import com.proyectofinal.consorcio.entities.Liquidacion;
 
 @Repository
 public interface LiquidacionRepository extends JpaRepository<Liquidacion, String>{	
-	@Query("SELECT l FROM Liquidacion l WHERE l.alta = true AND l.edificio.id = :id ORDER BY l.anio DESC")
+	@Query("SELECT l FROM Liquidacion l WHERE l.alta = true AND l.edificio.id = :id")
 	public List<Liquidacion> listarLiquidacionesAdmin(@Param("id") Long id);
 	
 	@Query("SELECT l FROM Liquidacion l WHERE l.alta = true AND l.edificio.id = :id_edificio")

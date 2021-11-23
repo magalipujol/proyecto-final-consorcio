@@ -101,7 +101,8 @@ public class DepartamentoService {
 			
 			return totalesDepartamentos;
 		} catch (Exception e) {
-			throw new Exception ("Error en totalesDepartemtno");
+			//throw new Exception ("Error en totalesDepartamento");
+			throw new Exception ("No hay departamentos cargados para mostrar la liquidación");
 		}		
 	}
 	

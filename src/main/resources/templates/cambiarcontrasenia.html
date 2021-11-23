@@ -25,6 +25,10 @@
           <h5 class="card-title">Cambiar contraseña</h5>
           <form th:action="@{/usuario/cambiar-contrasenia}" method="POST">
             <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Contraseña actual</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="actual" />
+            </div>
+            <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Nueva contraseña</label>
               <input type="password" class="form-control" id="exampleInputPassword1" name="contrasenia1" />
             </div>

@@ -26,14 +26,13 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/cambiar-contrasenia")
-	public String modificarContrasenia(@RequestParam String contrasenia1, @RequestParam String contrasenia2, ModelMap model) throws Exception {
+	public String modificarContrasenia(@RequestParam String actual, @RequestParam String contrasenia1, @RequestParam String contrasenia2, ModelMap model) throws Exception {
 		try {
-			usuarioService.cambiarContrasenia(contrasenia1, contrasenia2);
-
-			return "redirect:/logout";
+			usuarioService.cambiarContrasenia(actual, contrasenia1, contrasenia2);
+			return "redirect:/logout";			
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
-			return "redirect:/logout";	
+			return "cambiarcontrasenia.html";			
 		}
 	}
 }

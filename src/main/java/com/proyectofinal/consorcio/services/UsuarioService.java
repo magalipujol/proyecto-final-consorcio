@@ -67,19 +67,18 @@ public class UsuarioService implements UserDetailsService {
 		}	
 	}
     
-    public Usuario cambiarContrasenia (String contraseniaNueva1, String contraseniaNueva2) throws Exception {
-    	try {
+    public void cambiarContrasenia (String actual, String contraseniaNueva1, String contraseniaNueva2) throws Exception {
     		Usuario usuario = getUserByLogin();
+
+			if(!encoder.matches(actual, usuario.getPassword()))
+				throw new Exception ("La contraseña actual no coincide con la registrada.");
     		
 			if (contraseniaNueva1.equals(contraseniaNueva2)) {
 				usuario.setPassword(encoder.encode(contraseniaNueva1));				
 				usuarioRepository.save(usuario);
 			}
-
-			return usuario;
-		} catch (Exception e) {
-			throw new Exception ("Error al cambiar contraseña");
-		}    	
+			else
+				throw new Exception ("Las contraseñas ingresadas no coinciden.");
     }
 	
 	public void validar (String mail) throws Exception {

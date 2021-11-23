@@ -204,16 +204,11 @@ public class LiquidacionService {
 			List<Liquidacion> liquidaciones = liquidacionRepository.listarLiquidacionesEdificio(id_edificio);
 
 			for (Liquidacion liq : liquidaciones) {
-
-				if (liq.getAnio().equals(anio) && liq.getMes().equals(Meses.valueOf(mes))) {
+				if (liq.getAnio().equals(anio) && liq.getMes().equals(Meses.valueOf(mes))) 
 					throw new Exception ("Ya existe una liquidación para este edificio y período");				
-				}
 			}
-
 		} catch (Exception e) {
 			throw new Exception ("Error al validar liquidacion");
 		}
-		
-		
 	}
 }

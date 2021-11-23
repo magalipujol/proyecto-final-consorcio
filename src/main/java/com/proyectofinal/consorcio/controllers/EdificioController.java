@@ -32,7 +32,6 @@ public class EdificioController {
     @Autowired
     private UsuarioService usuarioService;
     
-    
     @PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/ver")
     public String verEdificios (ModelMap model) throws Exception{
@@ -82,11 +81,10 @@ public class EdificioController {
 		try {
 			Edificio edificio;
 
-			if (id == null) {
+			if (id == null)
 				edificio = edificioService.crear(direccion);				
-			} else {
-				edificio = edificioService.modificar(id, direccion);
-			}
+			else 
+				edificio = edificioService.modificar(id, direccion);		
 
 			List<Departamento> listaDepartamentos = departamentoService.listarActivos(edificio.getId());
 

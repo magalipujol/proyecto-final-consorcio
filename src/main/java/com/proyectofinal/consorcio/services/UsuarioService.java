@@ -72,25 +72,21 @@ public class UsuarioService implements UserDetailsService {
     		Usuario usuario = getUserByLogin();
     		
 			if (contraseniaNueva1.equals(contraseniaNueva2)) {
-				usuario.setPassword(encoder.encode(contraseniaNueva1));
-				
+				usuario.setPassword(encoder.encode(contraseniaNueva1));				
 				usuarioRepository.save(usuario);
 			}
+
 			return usuario;
 		} catch (Exception e) {
 			throw new Exception ("Error al cambiar contraseña");
-		}
-    	
+		}    	
     }
 	
 	public void validar (String mail) throws Exception {
-		if (mail==null || mail.isEmpty() || mail.contains("  ")) {
-			throw new Exception ("Debe ingresar un mail válido");
-		} 
+		if (mail==null || mail.isEmpty() || mail.contains("  "))
+			throw new Exception ("Debe ingresar un mail válido");	
 		
-		//VER MANEJO DE ERRRORES:
-		if (usuarioRepository.findByMail(mail) != null) {
+		if (usuarioRepository.findByMail(mail) != null)
 			throw new Exception ("El mail ya existe");
-		}				
 	}
 }

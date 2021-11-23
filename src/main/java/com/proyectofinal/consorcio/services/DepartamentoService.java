@@ -35,7 +35,6 @@ public class DepartamentoService {
 			departamento.setDpto(dpto);
 			departamento.setPorcentajeParticipacion(porcentaje);			
 			departamento.setEdificio(edificioRepository.findById(id_edificio).get());
-			//Ver usuario (roles)
 			departamento.setUsuario(usuario);
 
 			departamentoRepository.save(departamento);

@@ -112,7 +112,6 @@ public class EgresoService {
 	
 	public void validar(String detalle, Double monto, String tipoGasto, String id_liquidacion) throws Exception {
 		try {
-			//Validar egreso
 			if (detalle.equals(null) || detalle.isEmpty() || monto == null || 
 					(!TipoGasto.ORDINARIO.toString().equals(tipoGasto) && !TipoGasto.EXTRAORDINARIO.toString().equals(tipoGasto)) || 
 							id_liquidacion.equals(null) || id_liquidacion.isEmpty()) {

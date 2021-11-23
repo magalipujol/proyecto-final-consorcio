@@ -19,5 +19,4 @@ public interface EgresoRepository extends JpaRepository<Egreso, String> {
 	
 	@Query("SELECT e FROM Egreso e WHERE e.alta= true AND e.tipoGasto LIKE 'EXTRAORDINARIO' AND e.liquidacion.id = :id ")
 	public List<Egreso> buscarExtraordinarios (@Param("id") String id);
-	
 }

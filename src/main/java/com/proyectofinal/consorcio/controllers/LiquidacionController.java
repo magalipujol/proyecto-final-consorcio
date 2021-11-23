@@ -116,7 +116,6 @@ public class LiquidacionController {
 
 			model.addAttribute("egresos", egresos);
 
-			// Retorna vista de una liquidacion
 			return "expensasVistaUsuario.html";
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());

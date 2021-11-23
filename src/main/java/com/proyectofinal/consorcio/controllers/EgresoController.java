@@ -72,14 +72,12 @@ public class EgresoController {
 			model.addAttribute("error", e.getMessage());
 			return "expensasVistaUsuario.html";
 		}
-	}
-	
-	
+	}		
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/guardar")
 	public String guardarEgresos (ModelMap model, @RequestParam String detalle, @RequestParam Double monto,
-			@RequestParam String tipoGasto, @RequestParam String id_liquidacion) throws Exception{
+			@RequestParam String tipoGasto, @RequestParam String id_liquidacion) throws Exception {
 		try {
 			egresoService.crear(detalle, monto, tipoGasto, id_liquidacion);
 

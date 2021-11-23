@@ -13,12 +13,10 @@ import com.proyectofinal.consorcio.services.UsuarioService;
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController {
-
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	
-	@GetMapping("/cambiarContrasenia")
+	@GetMapping("/cambiar-contrasenia")
 	public String cambiarContrasenia(ModelMap model) throws Exception {
 		try {			
 			return "cambiarcontrasenia.html";			
@@ -37,7 +35,5 @@ public class UsuarioController {
 			model.addAttribute("error", e.getMessage());
 			return "redirect:/logout";	
 		}
-
 	}
-
 }
